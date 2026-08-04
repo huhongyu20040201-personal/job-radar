@@ -9,17 +9,28 @@
 当前配置：**1205 家公司**（`companies.yaml`），约 7.5 万个岗位，
 按"应届生 + 湾区/美国远程"过滤后剩 130 个左右。抓完一轮约 60 秒。
 
-## 已经配好的定时任务
+## 跑在 GitHub Actions 上（当前方案）
 
-Windows 计划任务 `job-radar`，每天 **11:00** 自动跑，日志写到 `run.log`。
+`.github/workflows/daily.yml` 每天 **18:00 UTC = 太平洋时间 11:00** 自动跑，
+结果通过 Telegram 推到手机。电脑关机也照跑。
+
+冬令时（11 月～3 月）UTC 差值变成 8 小时，想拨回 11 点就把 cron 里的 `18` 改成 `19`。
+
+需要在仓库 Settings → Secrets and variables → Actions 配两个 secret：
+`TELEGRAM_BOT_TOKEN` 和 `TELEGRAM_CHAT_ID`。
+
+**仓库必须设 private。** `seen.json` 和 `digest.md` 会暴露你在看哪些公司、投了什么。
+
+### 本地计划任务（已停用）
+
+Windows 计划任务 `job-radar` 还在，但已 disable，免得和云上各写各的 `seen.json`。
+想切回本地：
 
 ```bash
-schtasks /Query /TN "job-radar"      # 看下次运行时间
-schtasks /Run   /TN "job-radar"      # 立刻手动跑一次
-schtasks /Change /TN "job-radar" /ST 09:00   # 改时间
+schtasks /Change /TN "job-radar" /ENABLE
 ```
 
-只在你登录 Windows 的状态下会跑（创建时没设开机密码）。
+切回本地的话记得把 GitHub 上的 workflow 关掉。
 
 ## 手动跑
 
