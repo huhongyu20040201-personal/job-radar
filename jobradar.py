@@ -17,6 +17,7 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+import html
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, asdict
 from datetime import datetime, timedelta, timezone
@@ -50,6 +51,7 @@ class Job:
     url: str
     posted_at: str      # ISO 字符串，拿不到就是 ""
     starred: bool = False   # 标题明确写着 new grad / entry level 之类
+    min_years: int = -1     # 描述里要求的最低年限；-1 = 没读到描述或没提年限
 
     @property
     def age_days(self):
@@ -76,6 +78,50 @@ def parse_dt(value):
 
 
 # --------------------------------------------------------------------------
+# 经验年限：招聘启事几乎从不把年限写进标题，只能从描述里读
+# --------------------------------------------------------------------------
+
+_TAG = re.compile(r"<[^>]+>")
+# "3+ years" / "3-5 years" / "3 to 5 years"，取打头那个数字
+_YEARS = re.compile(r"(\d{1,2})\s*(?:\+|\s*(?:-|–|to)\s*\d{1,2}\s*\+?)?\s*year", re.I)
+
+
+def strip_html(s):
+    return " ".join(html.unescape(_TAG.sub(" ", s or "")).split())
+
+
+def extract_min_years(text):
+    """描述里要求的最低经验年限。读不出来返回 -1。
+
+    取所有匹配里的**最小值**，因为岗位常写 "0-2 years" 或者在别处提到
+    "founded 5 years ago"。取最小值会偏向保留 —— 宁可多推一个让你自己看，
+    也不要把能投的岗位悄悄藏掉。
+    """
+    if not text:
+        return -1
+    low = text.lower()
+    best = -1
+    for m in _YEARS.finditer(low):
+        # 只认 "experience" 附近的年限，否则 "5 years ago" 之类会误伤
+        # "founded 5 years ago" / "over the past 3 years" 是在讲公司历史，
+        # 不是经验要求 —— 但它们常常离 "experience" 很近，不排掉会误伤。
+        if re.match(r"s?\s+ago\b", low[m.end():m.end() + 10]):
+            continue
+        if re.search(r"\b(?:past|last|previous|next|first)\s+$",
+                     low[max(0, m.start() - 15):m.start()]):
+            continue
+        window = low[max(0, m.start() - 80): m.end() + 80]
+        if "experience" not in window and "exp." not in window:
+            continue
+        n = int(m.group(1))
+        if n > 30:                     # 明显不是年限
+            continue
+        if best < 0 or n < best:
+            best = n
+    return best
+
+
+# --------------------------------------------------------------------------
 # 抓取
 # --------------------------------------------------------------------------
 
@@ -94,7 +140,9 @@ def fetch_json(url, retries=2):
 
 
 def from_greenhouse(company):
-    url = f"https://boards-api.greenhouse.io/v1/boards/{company}/jobs?content=false"
+    # content=true 会让响应大 10 倍，但不多花一个请求，
+    # 而经验年限只写在描述里，值这个流量。
+    url = f"https://boards-api.greenhouse.io/v1/boards/{company}/jobs?content=true"
     data = fetch_json(url)
     out = []
     for j in data.get("jobs", []):
@@ -106,6 +154,7 @@ def from_greenhouse(company):
             location=(j.get("location") or {}).get("name", ""),
             url=j.get("absolute_url", ""),
             posted_at=j.get("first_published") or j.get("updated_at") or "",
+            min_years=extract_min_years(strip_html(j.get("content", ""))),
         ))
     return out
 
@@ -124,6 +173,8 @@ def from_lever(company):
             location=cats.get("location", "") or "",
             url=j.get("hostedUrl", ""),
             posted_at=j.get("createdAt", ""),
+            min_years=extract_min_years(
+                j.get("descriptionPlain") or j.get("description") or ""),
         ))
     return out
 
@@ -141,6 +192,7 @@ def from_ashby(company):
             location=j.get("location", "") or "",
             url=j.get("jobUrl", "") or j.get("applyUrl", ""),
             posted_at=j.get("publishedAt", "") or "",
+            min_years=extract_min_years(j.get("descriptionPlain") or ""),
         ))
     return out
 
@@ -167,15 +219,85 @@ def from_smartrecruiters(company):
     return out
 
 
+def post_json(url, payload, retries=2):
+    data = json.dumps(payload).encode()
+    last = None
+    for attempt in range(retries + 1):
+        try:
+            req = urllib.request.Request(url, data=data, headers={
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                "User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
+                return json.loads(resp.read().decode("utf-8"))
+        except Exception as exc:                  # noqa: BLE001
+            last = exc
+            if attempt < retries:
+                continue
+    raise last
+
+
+# Workday 不给日期，只给 "Posted 3 Days Ago" 这种相对文本
+_POSTED = re.compile(r"(\d+)\s*\+?\s*days?", re.IGNORECASE)
+
+
+def parse_posted_on(text):
+    t = (text or "").lower()
+    if "today" in t or "just posted" in t:
+        days = 0
+    elif "yesterday" in t:
+        days = 1
+    else:
+        m = _POSTED.search(t)
+        if not m:
+            return ""
+        days = int(m.group(1))
+    return (datetime.now(timezone.utc) - timedelta(days=days)).isoformat()
+
+
+def from_workday(spec, pages=1):
+    """spec 格式: host|tenant|site
+
+    Workday 的 limit 硬上限是 20，但结果按发布时间倒序，
+    所以每天只取最新的一两页就够了 —— 不用翻完几千条。
+    """
+    try:
+        host, tenant, site = spec.split("|")
+    except ValueError:
+        raise ValueError(f"workday 条目格式应为 host|tenant|site，收到: {spec}")
+
+    api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
+    out = []
+    for page in range(pages):
+        data = post_json(api, {"appliedFacets": {}, "limit": 20,
+                               "offset": page * 20, "searchText": ""})
+        postings = data.get("jobPostings") or []
+        for j in postings:
+            path = j.get("externalPath", "")
+            out.append(Job(
+                key=f"workday:{tenant}:{site}:{path}",
+                source="workday",
+                company=tenant,
+                title=j.get("title", ""),
+                location=j.get("locationsText", "") or "",
+                url=f"https://{host}/en-US/{site}{path}",
+                posted_at=parse_posted_on(j.get("postedOn")),
+            ))
+        if len(postings) < 20:
+            break
+    return out
+
+
 ADAPTERS = {
     "greenhouse": from_greenhouse,
     "lever": from_lever,
     "ashby": from_ashby,
     "smartrecruiters": from_smartrecruiters,
+    "workday": from_workday,
 }
 
 
-def collect(sources, workers=12, verbose=False):
+def collect(sources, workers=12, verbose=False, workday_pages=1):
     """并发跑遍所有配置的公司。单个公司挂掉不影响其他的。
 
     公司数上千时串行要跑半小时，所以这里用线程池。workers 别调太高，
@@ -192,6 +314,8 @@ def collect(sources, workers=12, verbose=False):
     def one(task):
         source, company = task
         try:
+            if source == "workday":
+                return task, from_workday(company, pages=workday_pages), None
             return task, ADAPTERS[source](company), None
         except urllib.error.HTTPError as exc:
             return task, [], ("token 可能不对" if exc.code == 404
@@ -255,6 +379,7 @@ def apply_filters(jobs, f):
     locations = f.get("locations_any") or []
     loc_exclude = f.get("locations_exclude_any") or []
     boost = f.get("boost_any") or []
+    max_years = f.get("max_years_experience")
     max_age = f.get("max_age_days")
     unknown_loc = (f.get("unknown_location") or "keep").lower()
 
@@ -273,6 +398,10 @@ def apply_filters(jobs, f):
                     continue
             elif not matches_any(job.location, locations):
                 continue
+        # 经验年限。min_years == -1 表示读不到描述或描述没提年限，那就放行 ——
+        # 宁可让你自己点进去看一眼，也不要悄悄藏掉能投的岗位。
+        if max_years is not None and job.min_years >= 0 and job.min_years > max_years:
+            continue
         if max_age is not None:
             age = job.age_days
             if age is not None and age > max_age:
@@ -439,10 +568,11 @@ def cmd_telegram_setup():
 
 # --------------------------------------------------------------------------
 
-def cmd_verify(config, sources, workers):
+def cmd_verify(config, sources, workers, wd_pages=1):
     n = sum(len(v or []) for v in (sources or {}).values())
     print(f"检查 {n} 个公司的 token …\n", file=sys.stderr)
-    _, errors = collect(sources, workers=workers, verbose=(n <= 50))
+    _, errors = collect(sources, workers=workers, verbose=(n <= 50),
+                        workday_pages=wd_pages)
     print("", file=sys.stderr)
     if errors:
         print("以下需要修:", file=sys.stderr)
@@ -468,10 +598,12 @@ def main():
 
     config = yaml.safe_load(Path(args.config).read_text(encoding="utf-8"))
     sources = load_sources(config, args.config)
-    workers = (config.get("fetch") or {}).get("workers", 12)
+    fetch_cfg = config.get("fetch") or {}
+    workers = fetch_cfg.get("workers", 12)
+    wd_pages = fetch_cfg.get("workday_pages", 1)
 
     if args.verify:
-        return cmd_verify(config, sources, workers)
+        return cmd_verify(config, sources, workers, wd_pages)
 
     out_cfg = config.get("output") or {}
     state_cfg = config.get("state") or {}
@@ -479,7 +611,8 @@ def main():
 
     n_co = sum(len(v or []) for v in (sources or {}).values())
     print(f"抓取 {n_co} 家公司 …", file=sys.stderr)
-    jobs, errors = collect(sources, workers=workers, verbose=(n_co <= 50))
+    jobs, errors = collect(sources, workers=workers, verbose=(n_co <= 50),
+                           workday_pages=wd_pages)
     print(f"\n共 {len(jobs)} 个岗位，开始过滤", file=sys.stderr)
 
     jobs = apply_filters(jobs, config.get("filters") or {})
