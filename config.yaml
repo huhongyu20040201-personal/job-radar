@@ -1,0 +1,200 @@
+# ============================================================
+# job-radar config
+# 公司名单在 companies.yaml（1200+ 家，自动生成）。
+# 这个文件只管"要什么岗位"，改完直接跑 python jobradar.py
+# ============================================================
+
+# 公司名单文件。想临时加几家，也可以直接在下面写 sources:，会自动合并。
+sources_file: companies.yaml
+
+fetch:
+  # 并发数。12 能在 1 分钟内跑完 1200 家，再高容易被限流。
+  workers: 12
+
+filters:
+  # ---------- 1. 先圈出"工程岗" ----------
+  # 标题命中任意一条才保留。"re:" 开头按正则处理。
+  include_any:
+    - software engineer
+    - software developer
+    - backend
+    - back-end
+    - frontend
+    - front-end
+    - full stack
+    - fullstack
+    - infrastructure engineer
+    - platform engineer
+    - systems engineer
+    - data engineer
+    - machine learning engineer
+    - "re:\\bML engineer\\b"
+    - "re:\\bSDE\\b"
+    - "re:\\bSWE\\b"
+    - new grad
+    - new graduate
+    - university graduate
+    - college graduate
+    - early career
+    - entry level
+    - entry-level
+    - associate engineer
+
+  # ---------- 2. 再把不是应届的踢掉 ----------
+  # 这里是降噪主战场。你是应届生，所以资深头衔全排除。
+  exclude_any:
+    # 资历
+    - "re:\\bsenior\\b"
+    - "re:\\bsr\\.?\\b"
+    - "re:\\bstaff\\b"
+    - "re:\\bprincipal\\b"
+    - distinguished
+    - "re:\\bfellow\\b"
+    - "re:\\blead\\b"
+    - "re:\\bII\\b"
+    - "re:\\bIII\\b"
+    - "re:\\bIV\\b"
+    - "re:\\b[3-9]\\+?\\s*years\\b"
+    # 职级：L1-L3 / E1-E3 是应届，L4 以上不是
+    - "re:\\bL[4-9]\\b"
+    - "re:\\bE[4-9]\\b"
+    # 管理岗
+    - manager
+    - director
+    - "re:\\bhead of\\b"
+    - "re:\\bVP\\b"
+    - president
+    - "re:\\bchief\\b"
+    - architect
+    # 不是全职新人岗
+    - "re:\\bintern\\b"
+    - internship
+    - "re:\\bco-?op\\b"
+    - unpaid
+    - volunteer
+    - "re:\\bPhD\\b"
+    - contractor
+    # 不是工程岗（大名单里混进来的）
+    - sales
+    - recruiter
+    - designer
+    - marketing
+    - accountant
+    - attorney
+    - nurse
+    - teacher
+    - technician
+    - mechanic
+    - driver
+
+  # ---------- 3. 明确写着应届的，标 ⭐ 排前面 ----------
+  boost_any:
+    - new grad
+    - new graduate
+    - university graduate
+    - college graduate
+    - campus
+    - early career
+    - entry level
+    - entry-level
+    - "re:\\bengineer,? I\\b"
+    - "re:\\bL3\\b"
+    - "re:\\bE3\\b"
+    - associate
+    - rotational
+    - "re:\\b202[67]\\b"
+
+  # ---------- 4. 地点：整个湾区 ----------
+  locations_any:
+    - bay area
+    - san francisco
+    - "re:\\bSF\\b"
+    - palo alto
+    - mountain view
+    - sunnyvale
+    - san jose
+    - santa clara
+    - menlo park
+    - redwood city
+    - cupertino
+    - oakland
+    - berkeley
+    - foster city
+    - san mateo
+    - fremont
+    - milpitas
+    - emeryville
+    - burlingame
+    - san carlos
+    - los altos
+    - campbell
+    - pleasanton
+    - alameda
+    - san bruno
+    - hayward
+    - remote
+
+  # 地点黑名单，比白名单先跑。
+  # 因为白名单里有 "remote"，不排掉的话 "Remote Spain" 这种会混进来。
+  locations_exclude_any:
+    - spain
+    - poland
+    - portugal
+    - romania
+    - ukraine
+    - ireland
+    - united kingdom
+    - "re:\\bUK\\b"
+    - london
+    - germany
+    - berlin
+    - france
+    - paris
+    - netherlands
+    - amsterdam
+    - india
+    - bangalore
+    - hyderabad
+    - pune
+    - canada
+    - toronto
+    - vancouver
+    - mexico
+    - brazil
+    - argentina
+    - colombia
+    - australia
+    - sydney
+    - singapore
+    - japan
+    - tokyo
+    - china
+    - shanghai
+    - beijing
+    - korea
+    - taiwan
+    - israel
+    - "re:\\bEMEA\\b"
+    - "re:\\bAPAC\\b"
+    - "re:\\bLATAM\\b"
+    - philippines
+    - vietnam
+    - indonesia
+
+  max_age_days: 14
+
+  # 地点字段为空的岗位：keep 保留 / drop 丢弃
+  # 1200 家公司里空地点很多，keep 会很吵，所以设 drop
+  unknown_location: drop
+
+output:
+  markdown: digest.md
+  telegram:
+    # token 和 chat_id 走环境变量，不写在这个文件里
+    # GitHub 上配在 Settings -> Secrets and variables -> Actions
+    enabled: true
+  max_items: 60
+
+state:
+  path: seen.json
+  forget_after_days: 120

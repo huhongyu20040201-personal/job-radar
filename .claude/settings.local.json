@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip --version)",
+      "Bash(pip install *)",
+      "Bash(python _selftest.py)",
+      "Bash(python jobradar.py --verify)",
+      "Bash(python jobradar.py --all --dry-run)",
+      "Bash(python jobradar.py --all)",
+      "Bash(python jobradar.py)",
+      "Bash(ls -a '/c/Users/huhon/.claude/projects/C--Users-huhon-OneDrive-Desktop-job-radar/memory/' 2>&1 || echo EMPTY)",
+      "Bash(python \"C:\\\\Users\\\\huhon\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\C--Users-huhon-OneDrive-Desktop-job-radar\\\\c2aa0844-f3f8-444d-8f38-cc6c22217e1d\\\\scratchpad\\\\rate.py\")",
+      "Bash(ls -l '/c/Users/huhon/AppData/Local/Python/pythoncore-3.14-64/python.exe')",
+      "PowerShell(schtasks /Create /TN \"job-radar\" /TR \"'C:\\\\Users\\\\huhon\\\\OneDrive\\\\Desktop\\\\job-radar\\\\run.bat'\" /SC DAILY /ST 08:30 /F)",
+      "WebSearch",
+      "PowerShell(schtasks /Change /TN \"job-radar\" /ST 11:00; schtasks /Query /TN \"job-radar\" /FO LIST | Select-String -Pattern \"TaskName|Next Run Time|Status|Schedule\")",
+      "PowerShell(schtasks /Run /TN \"job-radar\")",
+      "Bash(curl -sL -o ng.json \"https://raw.githubusercontent.com/SimplifyJobs/New-Grad-Positions/dev/.github/scripts/listings.json\")",
+      "Bash(python -c ' *)",
+      "Bash(python extract.py)",
+      "Bash(PYTHONIOENCODING=utf-8 python extract.py)",
+      "Bash(PYTHONIOENCODING=utf-8 python validate.py)",
+      "Bash(PYTHONIOENCODING=utf-8 python gen_companies.py)",
+      "Bash(python -c \"import json;print\\('seen entries:', len\\(json.load\\(open\\('seen.json',encoding='utf-8'\\)\\)\\)\\)\")",
+      "Bash(git --version)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(PYTHONIOENCODING=utf-8 python -c ' *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=job-radar -c user.email=local@jobradar commit -q -m \"job-radar: 1205 家公司，应届生+湾区过滤，Telegram 推送\")"
+    ]
+  }
+}

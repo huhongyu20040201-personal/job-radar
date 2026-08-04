@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+
+# 本地跑的日志
+run.log
+
+# 万一你在本地存过 token，别让它进仓库
+secrets.bat
+.env
+
+# 注意：seen.json 和 digest.md 是故意要提交的。
+# seen.json 是去重状态，不提交的话云上每天都从零开始，会重复推同样的岗位。
