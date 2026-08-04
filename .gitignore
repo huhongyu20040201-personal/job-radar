@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
 
+# Claude Code 的本地设置，跟项目无关
+.claude/
+
 # 本地跑的日志
 run.log
 
