@@ -11,7 +11,7 @@ recent = (now - timedelta(days=2)).isoformat()
 old = (now - timedelta(days=60)).isoformat()
 
 FAKE = {
-    "https://boards-api.greenhouse.io/v1/boards/acme/jobs?content=false": {
+    "https://boards-api.greenhouse.io/v1/boards/acme/jobs?content=true": {
         "jobs": [
             {"id": 1, "title": "Software Engineer, Backend",
              "location": {"name": "San Francisco, CA"},
@@ -87,6 +87,68 @@ with tempfile.TemporaryDirectory() as d:
     state2["greenhouse:acme:999"] = (now - timedelta(days=200)).isoformat()
     dropped = jobradar.save_state(sp, state2, 120)
     assert dropped == 1, dropped
+
+# 经验年限：从描述里读最低要求
+for text, want in [
+    ("We require 5+ years of experience", 5),
+    ("0-2 years of experience preferred", 0),
+    ("2+ years of professional experience", 2),
+    ("Minimum 3 to 5 years experience required", 3),
+    ("You have 1-3 years of relevant experience", 1),
+    ("Requires at least 2 years experience", 2),
+    # 下面这些是在讲公司历史，不是经验要求，不能误判
+    ("Figma was founded 5 years ago. No experience needed.", -1),
+    ("Over the past 3 years our experience team grew", -1),
+    ("In the last 10 years, experience has shown", -1),
+    ("no numbers here", -1),
+    ("", -1),
+    (None, -1),
+]:
+    got = jobradar.extract_min_years(text)
+    assert got == want, f"{text!r} -> {got}, 期望 {want}"
+
+assert jobradar.strip_html("<p>Hi &amp; <b>bye</b></p>") == "Hi & bye"
+
+# max_years_experience: 读不到年限(-1)的必须保留，超标的必须扔
+exp_jobs = [
+    jobradar.Job("a", "greenhouse", "c", "Software Engineer", "Remote", "u", "", min_years=-1),
+    jobradar.Job("b", "greenhouse", "c", "Software Engineer", "Remote", "u", "", min_years=0),
+    jobradar.Job("c", "greenhouse", "c", "Software Engineer", "Remote", "u", "", min_years=2),
+    jobradar.Job("d", "greenhouse", "c", "Software Engineer", "Remote", "u", "", min_years=8),
+]
+got = {j.key for j in jobradar.apply_filters(
+    exp_jobs, {"include_any": ["software engineer"], "max_years_experience": 1})}
+assert got == {"a", "b"}, got
+
+# Workday: 相对日期解析 + 翻页在不足一页时提前停
+assert jobradar.parse_posted_on("Posted Today")[:4].isdigit()
+assert jobradar.parse_posted_on("Posted 5 Days Ago")[:10] == \
+    (now - timedelta(days=5)).date().isoformat()
+assert jobradar.parse_posted_on("Posted Yesterday")[:10] == \
+    (now - timedelta(days=1)).date().isoformat()
+assert jobradar.parse_posted_on("Posted 30+ Days Ago")[:10] == \
+    (now - timedelta(days=30)).date().isoformat()
+assert jobradar.parse_posted_on("") == ""
+assert jobradar.parse_posted_on(None) == ""
+
+WD_CALLS = []
+
+
+def fake_post(url, payload, retries=2):
+    WD_CALLS.append(payload["offset"])
+    return {"total": 3, "jobPostings": [
+        {"title": "Software Engineer, New Grad", "externalPath": "/job/abc",
+         "locationsText": "US, CA, Santa Clara", "postedOn": "Posted Today"},
+    ]}
+
+
+jobradar.post_json = fake_post
+wd = jobradar.from_workday("x.wd5.myworkdayjobs.com|acme|Ext", pages=3)
+assert len(wd) == 1, wd            # 只回 1 条 < 20，应该停在第一页
+assert WD_CALLS == [0], WD_CALLS
+assert wd[0].url == "https://x.wd5.myworkdayjobs.com/en-US/Ext/job/abc"
+assert wd[0].key == "workday:acme:Ext:/job/abc"
+assert wd[0].age_days == 0
 
 # 渲染
 md = jobradar.render_markdown(kept, [("greenhouse", "bad", "token 可能不对")])

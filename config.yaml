@@ -10,6 +10,11 @@ sources_file: companies.yaml
 fetch:
   # 并发数。12 能在 1 分钟内跑完 1200 家，再高容易被限流。
   workers: 12
+  # Workday 每页硬上限 20 条，但按发布时间倒序，所以取前几页就是最新的几十个。
+  # 注意：不能用 searchText 做服务端筛选 —— 一加它就改成按相关度排序，
+  # 第一页全是 30 天前的老岗位，"今天有什么新的"就问不出来了。
+  # 2 页 = 每站最新 40 个。Nvidia 这种一天能发 20+ 的，1 页会漏。
+  workday_pages: 2
 
 filters:
   # ---------- 1. 先圈出"工程岗" ----------
@@ -54,7 +59,7 @@ filters:
     - "re:\\bII\\b"
     - "re:\\bIII\\b"
     - "re:\\bIV\\b"
-    - "re:\\b[3-9]\\+?\\s*years\\b"
+    - "re:\\b\\d+\\+?\\s*years?\\b"
     # 职级：L1-L3 / E1-E3 是应届，L4 以上不是
     - "re:\\bL[4-9]\\b"
     - "re:\\bE[4-9]\\b"
@@ -180,6 +185,13 @@ filters:
     - philippines
     - vietnam
     - indonesia
+
+  # ---------- 经验年限 ----------
+  # 从岗位描述里读出的最低年限要求，超过这个数就扔掉。
+  # 你是应届生，1 表示 "0-1 年可以，2+ years 一律不要"。
+  # 读不到描述、或描述没提年限的，一律保留（见 apply_filters 里的说明）。
+  # 目前 greenhouse / lever / ashby 能读到描述；smartrecruiters / workday 读不到。
+  max_years_experience: 1
 
   max_age_days: 14
 
