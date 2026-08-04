@@ -28,7 +28,9 @@
       "Bash(PYTHONIOENCODING=utf-8 python -c ' *)",
       "Bash(git init *)",
       "Bash(git add *)",
-      "Bash(git -c user.name=job-radar -c user.email=local@jobradar commit -q -m \"job-radar: 1205 家公司，应届生+湾区过滤，Telegram 推送\")"
+      "Bash(git -c user.name=job-radar -c user.email=local@jobradar commit -q -m \"job-radar: 1205 家公司，应届生+湾区过滤，Telegram 推送\")",
+      "PowerShell(schtasks /Change /TN \"job-radar\" /DISABLE; schtasks /Query /TN \"job-radar\" /FO LIST | Select-String -Pattern \"TaskName|Status\")",
+      "Bash(git -c user.name=job-radar -c user.email=local@jobradar commit -q -m \"README: 改为 GitHub Actions 方案\")"
     ]
   }
 }
