@@ -1,0 +1,46 @@
+name: job-radar
+
+on:
+  schedule:
+    # cron 只认 UTC，而且不懂夏令时。
+    # 18:00 UTC = 太平洋时间 11:00（夏令时 PDT）/ 10:00（冬令时 PST）
+    # 冬天想拨回 11 点就把 18 改成 19。
+    - cron: "0 18 * * *"
+  workflow_dispatch:        # 也可以在 Actions 页面手动点一下
+
+permissions:
+  contents: write           # 需要写回 seen.json
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install pyyaml
+
+      - name: Scan job boards
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python jobradar.py
+
+      # seen.json 必须写回仓库，否则每天都是全新状态，会把同样的岗位重复推给你
+      - name: Commit state
+        run: |
+          git config user.name  "job-radar"
+          git config user.email "actions@github.com"
+          git add seen.json digest.md
+          git diff --staged --quiet && echo "无变化" && exit 0
+          git commit -m "scan $(date -u +%F)"
+          git pull --rebase --autostash
+          git push
+
+      # 摘要也会出现在 Actions 运行页面的 Summary 里
+      - name: Show digest
+        if: always()
+        run: cat digest.md >> $GITHUB_STEP_SUMMARY
