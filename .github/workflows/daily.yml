@@ -3,9 +3,13 @@ name: job-radar
 on:
   schedule:
     # cron 只认 UTC，而且不懂夏令时。
-    # 18:00 UTC = 太平洋时间 11:00（夏令时 PDT）/ 10:00（冬令时 PST）
-    # 冬天想拨回 11 点就把 18 改成 19。
-    - cron: "0 18 * * *"
+    # 17:23 UTC = 太平洋时间 10:23（夏令时 PDT）/ 9:23（冬令时 PST）
+    #
+    # 为什么不是整点：GitHub 的定时任务在 :00 排队极其严重，实测 08-05 那次
+    # 排了 4 小时 21 分才开始。挑个冷门分钟能显著减少排队；提前到 10:23 起跑，
+    # 是为了让"排队 + 跑完"之后大致落在 11 点前后。
+    # 即便如此仍然不保证准点 —— GitHub 明确说 schedule 是尽力而为。
+    - cron: "23 17 * * *"
   workflow_dispatch:        # 也可以在 Actions 页面手动点一下
 
 permissions:
@@ -14,6 +18,8 @@ permissions:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    # 正常跑几分钟就完。卡住的话早点掐掉，别占满默认的 6 小时。
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -44,3 +50,18 @@ jobs:
       - name: Show digest
         if: always()
         run: cat digest.md >> $GITHUB_STEP_SUMMARY
+
+      # 挂了也要吭一声。否则失败是静默的 —— 你只会觉得"今天怎么没岗位"，
+      # 而分不清是真没有新岗位，还是根本没跑成。
+      - name: 失败时推送告警
+        if: failure()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          curl -sS -X POST \
+            "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
+            --data-urlencode "chat_id=$TELEGRAM_CHAT_ID" \
+            --data-urlencode "text=⚠️ job-radar 今天没跑成，日志：$RUN_URL" \
+            -o /dev/null
