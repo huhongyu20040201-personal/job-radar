@@ -1,21 +1,30 @@
 # 今日新岗位 · 2026-08-10
 
-共 6 个。
+共 9 个。
+
+## ⭐ 明确写着应届 / 入门级（3 个）
+
+- [New College Graduate - NAND Design Engineering](https://micron.wd1.myworkdayjobs.com/en-US/External/job/San-Jose-CA/New-College-Graduate---NAND-Design-Engineering_JR108447) — **micron**  
+  San Jose, CA · 0 天前
+- [Test & Evaluation Engineers (Entry Level, Associate or Experienced)](https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/USA---Berkeley-MO/Test---Evaluation-Engineers--Entry-Level--Associate-or-Experienced-_JR2026519252-1) — **boeing**  
+  USA - Berkeley, MO · 0 天前
+- [Test & Evaluation Engineers (Entry Level, Associate or Experienced)](https://boeing.wd1.myworkdayjobs.com/en-US/external_subsidiary/job/USA---Berkeley-MO/Test---Evaluation-Engineers--Entry-Level--Associate-or-Experienced-_JR2026519252) — **boeing**  
+  USA - Berkeley, MO · 0 天前
 
 ## 其余工程岗（6 个）
 
-- [Robotics Software Engineer, Perception](https://jobs.ashbyhq.com/hadrian-automation/81aa9da8-eaff-4644-ae5b-a0d105509a0a) — **hadrian-automation**  
-  San Francisco Bay Area, CA · 0 天前
-- [Software Engineer, Collections Infra](https://jobs.ashbyhq.com/notion/ca74504a-9b91-4ce3-b0df-97919b46e749) — **notion**  
-  San Francisco, California · 0 天前
-- [Agentic AI Systems Engineer](https://amat.wd1.myworkdayjobs.com/en-US/External/job/Santa-ClaraCA/Agentic-AI-Systems-Engineer_R2619018) — **amat**  
-  Santa Clara,CA · 0 天前
-- [M365 Platform & Power Platform Engineer](https://bmo.wd3.myworkdayjobs.com/en-US/External/job/REMOTETELETRAVAIL-ON-CAN/M365-Platform---Power-Platform-Engineer_R260019298) — **bmo**  
-  REMOTE/TELETRAVAIL, ON, CAN · 0 天前
-- [Frontend Engineer - BizBuySell - San Francisco](https://costar.wd1.myworkdayjobs.com/en-US/CoStarCareers/job/US-CA-San-Francisco/Frontend-Engineer---BizBuySell---San-Francisco_R39382) — **costar**  
-  US-CA San Francisco · 0 天前
-- [Microsoft Azure Cloud Platform Engineer Expert](https://allstate.wd5.myworkdayjobs.com/en-US/allstate_careers/job/USA---IL-Remote/Cloud-Platform-Engineer-Expert_R27507) — **allstate**  
-  USA - IL (Remote) · 0 天前
+- [Software Engineer - Observability](https://jobs.ashbyhq.com/baseten/3e925ab1-2089-4a79-989e-50479b546eda) — **baseten**  
+  San Francisco · 0 天前
+- [Platform Engineer](https://job-boards.greenhouse.io/defenseunicorns/jobs/5208558007) — **defenseunicorns**  
+  United States - Remote · 0 天前
+- [Platform Engineer](https://job-boards.greenhouse.io/defenseunicorns/jobs/5208110007) — **defenseunicorns**  
+  United States - Remote · 0 天前
+- [Platform Engineer](https://job-boards.greenhouse.io/defenseunicorns/jobs/5208532007) — **defenseunicorns**  
+  United States - Remote · 0 天前
+- [Platform Engineer](https://job-boards.greenhouse.io/defenseunicorns/jobs/5208546007) — **defenseunicorns**  
+  United States - Remote · 0 天前
+- [System Software Engineer (HPC)](https://kla.wd1.myworkdayjobs.com/en-US/search/job/Milpitas-CA/System-Software-Engineer--HPC-_2637682-1) — **kla**  
+  Milpitas, CA · 0 天前
 
 ---
 
@@ -29,3 +38,20 @@
 - `workday/otis.wd5.myworkdayjobs.com|otis|rec_ext_gateway` — HTTP 422
 - `workday/lithia.wd5.myworkdayjobs.com|lithia|LithiaCareers` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
+- `workday/lifefitness.wd1.myworkdayjobs.com|lifefitness|searchLFN` — HTTP 429
+- `workday/cambria.wd1.myworkdayjobs.com|cambria|cambria_careers` — HTTP 429
+- `workday/massmutual.wd1.myworkdayjobs.com|massmutual|MMCareers` — HTTP 429
+- `workday/cboe.wd1.myworkdayjobs.com|cboe|External_Career_CBOE` — HTTP 429
+- `workday/wmg.wd1.myworkdayjobs.com|wmg|WMGUS` — HTTP 429
+- `workday/kith.wd1.myworkdayjobs.com|kith|kith_external_careers` — HTTP 429
+- `workday/isu.wd1.myworkdayjobs.com|isu|IowaStateJobs` — HTTP 429
+- `workday/ercot.wd1.myworkdayjobs.com|ercot|ercot_careers` — HTTP 429
+- `workday/tamus.wd1.myworkdayjobs.com|tamus|AgriLife_Research_External` — HTTP 429
+- `workday/axcelis.wd1.myworkdayjobs.com|axcelis|axcelis` — HTTP 429
+- `workday/wsfsbank.wd1.myworkdayjobs.com|wsfsbank|wsfscareers` — HTTP 429
+- `workday/maricopa.wd1.myworkdayjobs.com|maricopa|MC_External` — HTTP 429
+- `workday/pretiumenterpriseservices.wd1.myworkdayjobs.com|pretiumenterpriseservices|Selene` — HTTP 429
+- `workday/topcon.wd1.myworkdayjobs.com|topcon|TopconPositioningCareers` — HTTP 429
+- `workday/belk.wd1.myworkdayjobs.com|belk|careers-collegecampus` — HTTP 429
+- `workday/draftkings.wd1.myworkdayjobs.com|draftkings|Campus_Career_Portal` — HTTP 429
+- `workday/exactsciences.wd1.myworkdayjobs.com|exactsciences|Exact_Sciences` — HTTP 429
