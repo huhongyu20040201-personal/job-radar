@@ -1,32 +1,13 @@
 # 今日新岗位 · 2026-08-13
 
-共 10 个。
+共 2 个。
 
-## ⭐ 明确写着应届 / 入门级（1 个）
+## 其余工程岗（2 个）
 
-- [New Grad - Integration Specialist](https://symbotic.wd504.myworkdayjobs.com/en-US/Symbotic/job/USA-Remote--Travel/New-Grad---Integration-Specialist_R7777) — **symbotic**  
-  USA Remote & Travel · 0 天前
-
-## 其余工程岗（9 个）
-
-- [Software Engineer, AI & Data Systems](https://jobs.ashbyhq.com/clera/d1a632c6-648f-4457-bdff-8dd188e292ab) — **clera**  
-  San Francisco · 0 天前
-- [Founding Cloud Infrastructure Engineer](https://jobs.ashbyhq.com/clera/50eef82c-1e8e-4c4e-acc3-04683f21be40) — **clera**  
-  remote · 0 天前
-- [Software Engineer, Infrastructure, Interpretability](https://job-boards.greenhouse.io/anthropic/jobs/5388612008) — **anthropic**  
+- [Software Engineer, Platform Scourge ](https://jobs.ashbyhq.com/allen-control-systems/a9a746a3-556c-4c28-9ee9-707872cacd3c) — **allen-control-systems**  
   San Francisco, CA · 0 天前
-- [Software Engineer, Cryptography](https://boards.greenhouse.io/robinhood/jobs/8077370?t=gh_src=&gh_jid=8077370) — **robinhood**  
-  Bellevue, WA; Menlo Park, CA · 0 天前
-- [Software Engineer - Personalization Platform (Frontend)](https://jobs.smartrecruiters.com/linkedin3/744000143323080) — **linkedin3**  
-  Mountain View, us · 0 天前
-- [Data Engineer SAP](https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-AZ-REMOTE/Data-Engineer-SAP_01866945) — **globalhr**  
-  US-AZ-REMOTE · 0 天前
-- [Software Engineering SMTS](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Software-Engineering-SMTS_JR355283) — **salesforce**  
-  California - San Francisco · 0 天前
-- [AI & Analytics Engineer (Software Engineer – Full stack)](https://pmpediatrics.wd5.myworkdayjobs.com/en-US/PMPeds/job/Remote---United-States/AI---Analytics-Engineer_2026-R0988-3) — **pmpediatrics**  
+- [Software Engineer, Core Platform](https://cribl.io/job-detail/?gh_jid=6143413004) — **cribl**  
   Remote - United States · 0 天前
-- [AI Software Engineer](https://trimble.wd1.myworkdayjobs.com/en-US/TrimbleCareers/job/US---Remote-CO/AI-Software-Engineer_R57160) — **trimble**  
-  US - Remote, CO · 1 天前
 
 ---
 
@@ -40,3 +21,39 @@
 - `workday/otis.wd5.myworkdayjobs.com|otis|rec_ext_gateway` — HTTP 422
 - `workday/lithia.wd5.myworkdayjobs.com|lithia|LithiaCareers` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
+- `workday/tnsi.wd1.myworkdayjobs.com|tnsi|Search` — HTTP 429
+- `workday/broadviewfcu.wd1.myworkdayjobs.com|broadviewfcu|broadviewfcucareers` — HTTP 429
+- `workday/kslaw.wd1.myworkdayjobs.com|kslaw|careers` — HTTP 429
+- `workday/cubic.wd1.myworkdayjobs.com|cubic|cubic_USA_careers` — HTTP 429
+- `workday/alliantenergy.wd1.myworkdayjobs.com|alliantenergy|alliant` — HTTP 429
+- `workday/byu.wd1.myworkdayjobs.com|byu|byu-careers` — HTTP 429
+- `workday/amfam.wd1.myworkdayjobs.com|amfam|Careers` — HTTP 429
+- `workday/silabs.wd1.myworkdayjobs.com|silabs|SiliconlabsCareers` — HTTP 429
+- `workday/hhmi.wd1.myworkdayjobs.com|hhmi|external` — HTTP 429
+- `workday/wmeimg.wd1.myworkdayjobs.com|wmeimg|WME` — HTTP 429
+- `workday/marvell.wd1.myworkdayjobs.com|marvell|MarvellCareers2` — HTTP 429
+- `workday/walkerdunlop.wd1.myworkdayjobs.com|walkerdunlop|WD` — HTTP 429
+- `workday/evercommerce.wd1.myworkdayjobs.com|evercommerce|evercommerce_careers` — HTTP 429
+- `workday/topcon.wd1.myworkdayjobs.com|topcon|TopconPositioningCareers` — HTTP 429
+- `workday/njm.wd1.myworkdayjobs.com|njm|njm` — HTTP 429
+- `workday/boeing.wd1.myworkdayjobs.com|boeing|INTERN` — HTTP 429
+- `workday/blackrock.wd1.myworkdayjobs.com|blackrock|BlackRock_Early_Careers_Program` — HTTP 429
+- `workday/knitwellgroup.wd1.myworkdayjobs.com|knitwellgroup|US_Corporate_Jobs` — HTTP 429
+- `workday/cdk.wd1.myworkdayjobs.com|cdk|CDK` — HTTP 429
+- `workday/cvshealth.wd1.myworkdayjobs.com|cvshealth|Private_Postings_Intern_Conversion_ONLY` — HTTP 429
+- `workday/spectrumcontrol.wd1.myworkdayjobs.com|spectrumcontrol|spectrumcontrol` — HTTP 429
+- `workday/lthc.wd1.myworkdayjobs.com|lthc|ExcellusBCBSCareers` — HTTP 429
+- `workday/jmfamily.wd1.myworkdayjobs.com|jmfamily|jmfamily_external` — HTTP 429
+- `workday/roberthalf.wd1.myworkdayjobs.com|roberthalf|roberthalfcareers` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|Univ_Careers` — HTTP 429
+- `workday/aaaie.wd1.myworkdayjobs.com|aaaie|csaacareers` — HTTP 429
+- `workday/vertexinc.wd1.myworkdayjobs.com|vertexinc|VertexInc` — HTTP 429
+- `workday/publicpartnerships.wd1.myworkdayjobs.com|publicpartnerships|ppl` — HTTP 429
+- `workday/fullsteam.wd1.myworkdayjobs.com|fullsteam|external` — HTTP 429
+- `workday/simonsfoundation.wd1.myworkdayjobs.com|simonsfoundation|simonsfoundationcareers` — HTTP 429
+- `workday/baldwin.wd1.myworkdayjobs.com|baldwin|MSI` — HTTP 429
+- `workday/clorox.wd1.myworkdayjobs.com|clorox|InviteClorox` — HTTP 429
+- `workday/lplfinancial.wd1.myworkdayjobs.com|lplfinancial|university` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|OpenEye_Careers` — HTTP 429
+- `workday/aaaie.wd1.myworkdayjobs.com|aaaie|CSAACareers2` — HTTP 429
+- `workday/gensler.wd1.myworkdayjobs.com|gensler|genslercareers` — HTTP 429
