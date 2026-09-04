@@ -2,33 +2,33 @@
 
 共 11 个。
 
-## ⭐ 明确写着应届 / 入门级（4 个）
+## ⭐ 明确写着应届 / 入门级（3 个）
 
-- [Software Engineer - New Grad](https://job-boards.greenhouse.io/scaleai/jobs/4730836005) — **scaleai**  
-  San Francisco, CA · 0 天前
-- [Software Engineer  (new college grad Dec 2026)](https://cadence.wd1.myworkdayjobs.com/en-US/Univ_Careers/job/SAN-JOSE/Software-Engineer---new-college-grad-Dec-2026-_R55738-2) — **cadence**  
-  SAN JOSE · 1 天前
-- [Software Engineer  (new college grad Dec 2026)](https://cadence.wd1.myworkdayjobs.com/en-US/University_Talent/job/SAN-JOSE/Software-Engineer---new-college-grad-Dec-2026-_R55738-1) — **cadence**  
-  SAN JOSE · 1 天前
-- [Software Engineer  (new college grad Dec 2026)](https://cadence.wd1.myworkdayjobs.com/en-US/University_Talent_NCG/job/SAN-JOSE/Software-Engineer---new-college-grad-Dec-2026-_R55738) — **cadence**  
-  SAN JOSE · 1 天前
+- [Finance Pathways Rotation Analyst (Early Career)](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Finance-Pathways-Rotation-Analyst--Early-Career-_JR358620-1) — **salesforce**  
+  California - San Francisco · 0 天前
+- [Software Engineer, Cloud Platform (2027 New College Graduate)](https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---California---Santa-Clara/Software-Engineer--Cloud-Platform--2027-New-College-Graduate-_JR-2604056) — **globalfoundries**  
+  USA - California - Santa Clara · 0 天前
+- [Finance Pathways Rotation Analyst (Early Career)](https://salesforce.wd12.myworkdayjobs.com/en-US/Futureforce_NewGradRoles/job/California---San-Francisco/Finance-Pathways-Rotation-Analyst--Early-Career-_JR358620) — **salesforce**  
+  California - San Francisco · 0 天前
 
-## 其余工程岗（7 个）
+## 其余工程岗（8 个）
 
-- [Full Stack Software Engineer, Product Explorations](https://jobs.ashbyhq.com/openai/4d1ede8c-3d4c-4503-8408-81e4b68c5c91) — **openai**  
+- [Founding Engineer (Full Stack)](https://jobs.ashbyhq.com/clera/9cd39527-b2f0-4cb3-894e-e51f3dea346b) — **clera**  
   San Francisco · 0 天前
-- [Data Engineer](https://job-boards.greenhouse.io/baselayer/jobs/5415971008) — **baselayer**  
-  San Francisco, California · 0 天前
-- [Contract Student Worker - Autonomy Safety Data Engineer](https://jobs.lever.co/zoox/dafe2927-74bf-4bef-8df0-cb0874595819) — **zoox**  
-  Foster City, CA · 0 天前
-- [Software Engineer - Collision Avoidance System Metrics](https://jobs.lever.co/zoox/d5d0608a-aa33-43c3-abe2-5ff8b40028d5) — **zoox**  
-  Foster City, CA · 0 天前
-- [Engineer, R&D Software Engineering](https://clarioclinical.wd1.myworkdayjobs.com/en-US/clarioclinical_careers/job/Hungary-Remote/Engineer--R-D-Software-Engineering_R18155) — **clarioclinical**  
-  Hungary Remote · 0 天前
-- [Machine Learning Engineer](https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/San-Jose/Machine-Learning-Engineer_R171645-1) — **adobe**  
-  San Jose · 1 天前
-- [Experienced Missions Systems Software Engineers – Embedded](https://boeing.wd1.myworkdayjobs.com/en-US/external_subsidiary/job/USA---Berkeley-MO/Experienced-Missions-Systems-Software-Engineers---Embedded_JR2026523563-1) — **boeing**  
-  USA - Berkeley, MO · 1 天前
+- [Reseach Engineer, Full Stack](https://jobs.ashbyhq.com/mistral.ai/cce4be06-ac42-4c69-9bcd-7f5dca6f5e3c) — **mistral.ai**  
+  Palo Alto · 0 天前
+- [SAP ABAP Full Stack Developer (Remote)](https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-CO-REMOTE/SAP-ABAP-Full-Stack-Developer--Remote-_01845858) — **globalhr**  
+  US-CO-REMOTE · 0 天前
+- [SAP S/4 ABAP Backend Developer (Remote)](https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-CO-REMOTE/SAP-S-4-ABAP-Backend-Developer--Remote-_01859149) — **globalhr**  
+  US-CO-REMOTE · 0 天前
+- [Systems Engineer Level 4](https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-California-Sunnyvale/Systems-Engineer-Level-4_R10243458) — **ngc**  
+  United States-California-Sunnyvale · 0 天前
+- [LabVIEW Systems Engineer Level 3](https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-California-Sunnyvale/LabVIEW-Systems-Engineer-Level-3_R10247796) — **ngc**  
+  United States-California-Sunnyvale · 0 天前
+- [Power Systems Engineer](https://abb.wd3.myworkdayjobs.com/en-US/external_career_page/job/USA-MD-Remote/Power-Systems-Engineer_JR00046374) — **abb**  
+  USA, MD, Remote · 0 天前
+- [Systems Engineering Acquisition Logistics Specialist (Secret clearance)](https://maxar.wd1.myworkdayjobs.com/en-US/Vantor/job/Remote-United-States/Systems-Engineering-Acquisition-Logistics-Specialist--Secret-clearance-_R24515) — **maxar**  
+  Remote (United States) · 0 天前
 
 ---
 
@@ -52,23 +52,18 @@
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
-- `workday/mizuho.wd1.myworkdayjobs.com|mizuho|mizuhoamericas` — HTTP 429
-- `workday/tamus.wd1.myworkdayjobs.com|tamus|TAMU_External` — HTTP 429
-- `workday/msudenver.wd1.myworkdayjobs.com|msudenver|MSUDenver` — HTTP 429
-- `workday/mpc.wd1.myworkdayjobs.com|mpc|MPCCareers` — HTTP 429
-- `workday/bankatfirst.wd1.myworkdayjobs.com|bankatfirst|ffb` — HTTP 429
-- `workday/fmr.wd1.myworkdayjobs.com|fmr|targeted` — HTTP 429
-- `workday/hcsc.wd1.myworkdayjobs.com|hcsc|HCSC_External` — HTTP 429
-- `workday/newschool.wd1.myworkdayjobs.com|newschool|external` — HTTP 429
-- `workday/ncr.wd1.myworkdayjobs.com|ncr|ext_us` — HTTP 429
-- `workday/foxfactory.wd1.myworkdayjobs.com|foxfactory|FOX` — HTTP 429
-- `workday/oneok.wd1.myworkdayjobs.com|oneok|ONEOK` — HTTP 429
-- `workday/blackstone.wd1.myworkdayjobs.com|blackstone|bx_external_site` — HTTP 429
-- `workday/roberthalf.wd1.myworkdayjobs.com|roberthalf|protivitiexperiencedcareers` — HTTP 429
-- `workday/plantemoran.wd1.myworkdayjobs.com|plantemoran|pmexternalcareers` — HTTP 429
-- `workday/interstate.wd1.myworkdayjobs.com|interstate|interstatebatteries-careers` — HTTP 429
-- `workday/issgovernance.wd1.myworkdayjobs.com|issgovernance|isscareers` — HTTP 429
-- `workday/uva.wd1.myworkdayjobs.com|uva|uvastudentjobs` — HTTP 429
-- `workday/signetjewelers.wd1.myworkdayjobs.com|signetjewelers|SignetCorporateCareers` — HTTP 429
 - `workday/ncino.wd5.myworkdayjobs.com|ncino|nCinoCareers` — HTTP 403
+- `workday/archwellessentials.wd1.myworkdayjobs.com|archwellessentials|modercareers` — HTTP 429
+- `workday/therapybrands.wd1.myworkdayjobs.com|therapybrands|EnsoraHealth` — HTTP 429
+- `workday/baldwin.wd1.myworkdayjobs.com|baldwin|MSI` — HTTP 429
+- `workday/clorox.wd1.myworkdayjobs.com|clorox|InviteClorox` — HTTP 429
+- `workday/fhlbtopeka.wd1.myworkdayjobs.com|fhlbtopeka|FHLBT` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|University_Talent` — HTTP 429
+- `workday/taxwell.wd1.myworkdayjobs.com|taxwell|taxwellcareers` — HTTP 429
+- `workday/rakuten.wd1.myworkdayjobs.com|rakuten|RakutenAmericas` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|University_Talent_NCG` — HTTP 429
+- `workday/bdx.wd1.myworkdayjobs.com|bdx|US_EARLY_TALENT_SITE` — HTTP 429
+- `workday/tmobile.wd1.myworkdayjobs.com|tmobile|contractorconversion` — HTTP 429
+- `workday/rockwellautomation.wd1.myworkdayjobs.com|rockwellautomation|External-Rockwell-Automation-Early-Careers` — HTTP 429
+- `workday/aaaie.wd1.myworkdayjobs.com|aaaie|CSAACareers2` — HTTP 429
 - `workday/dell.wd1.myworkdayjobs.com|dell|External` — HTTP 422
