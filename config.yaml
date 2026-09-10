@@ -1,24 +1,27 @@
 # ============================================================
 # job-radar config
-# 公司名单在 companies.yaml（1200+ 家，自动生成）。
-# 这个文件只管"要什么岗位"，改完直接跑 python jobradar.py
+# The company list lives in companies.yaml (~2,400 boards, auto-generated).
+# This file only decides *which* jobs you want. Edit, then run: python jobradar.py
 # ============================================================
 
-# 公司名单文件。想临时加几家，也可以直接在下面写 sources:，会自动合并。
+# Company list file. To add a few companies ad hoc, you can also put a
+# `sources:` block in this file — it gets merged with the list below.
 sources_file: companies.yaml
 
 fetch:
-  # 并发数。12 能在 1 分钟内跑完 1200 家，再高容易被限流。
+  # Concurrency. 12 finishes ~2,400 boards in 3-4 minutes; higher mostly earns HTTP 429s.
   workers: 12
-  # Workday 每页硬上限 20 条，但按发布时间倒序，所以取前几页就是最新的几十个。
-  # 注意：不能用 searchText 做服务端筛选 —— 一加它就改成按相关度排序，
-  # 第一页全是 30 天前的老岗位，"今天有什么新的"就问不出来了。
-  # 2 页 = 每站最新 40 个。Nvidia 这种一天能发 20+ 的，1 页会漏。
+  # Workday hard-caps a page at 20 postings but sorts newest-first, so the first
+  # few pages are the newest few dozen.
+  # Note: don't use searchText for server-side filtering — adding it switches the
+  # sort to relevance, and page 1 fills up with 30-day-old postings, which makes
+  # "what's new today" unanswerable.
+  # 2 pages = newest 40 per site. Boards like Nvidia post 20+ a day, so 1 page misses some.
   workday_pages: 2
 
 filters:
-  # ---------- 1. 先圈出"工程岗" ----------
-  # 标题命中任意一条才保留。"re:" 开头按正则处理。
+  # ---------- 1. Keep engineering roles ----------
+  # A title must match at least one entry. Entries starting with "re:" are regexes.
   include_any:
     - software engineer
     - software developer
@@ -45,10 +48,10 @@ filters:
     - entry-level
     - associate engineer
 
-  # ---------- 2. 再把不是应届的踢掉 ----------
-  # 这里是降噪主战场。你是应届生，所以资深头衔全排除。
+  # ---------- 2. Drop anything that isn't new-grad level ----------
+  # This is where most of the noise reduction happens. Any match drops the job.
   exclude_any:
-    # 资历
+    # Seniority
     - "re:\\bsenior\\b"
     - "re:\\bsr\\.?\\b"
     - "re:\\bstaff\\b"
@@ -60,10 +63,10 @@ filters:
     - "re:\\bIII\\b"
     - "re:\\bIV\\b"
     - "re:\\b\\d+\\+?\\s*years?\\b"
-    # 职级：L1-L3 / E1-E3 是应届，L4 以上不是
+    # Levels: L1-L3 / E1-E3 are new-grad; L4 and up are not
     - "re:\\bL[4-9]\\b"
     - "re:\\bE[4-9]\\b"
-    # 管理岗
+    # Management
     - manager
     - director
     - "re:\\bhead of\\b"
@@ -71,7 +74,7 @@ filters:
     - president
     - "re:\\bchief\\b"
     - architect
-    # 不是全职新人岗
+    # Not a full-time entry-level role
     - "re:\\bintern\\b"
     - internship
     - "re:\\bco-?op\\b"
@@ -79,7 +82,7 @@ filters:
     - volunteer
     - "re:\\bPhD\\b"
     - contractor
-    # 不是工程岗（大名单里混进来的）
+    # Not engineering (these leak in from a list this large)
     - sales
     - recruiter
     - designer
@@ -92,7 +95,7 @@ filters:
     - mechanic
     - driver
 
-  # ---------- 3. 明确写着应届的，标 ⭐ 排前面 ----------
+  # ---------- 3. Star explicit new-grad roles and sort them first ----------
   boost_any:
     - new grad
     - new graduate
@@ -109,7 +112,7 @@ filters:
     - rotational
     - "re:\\b202[67]\\b"
 
-  # ---------- 4. 地点：整个湾区 ----------
+  # ---------- 4. Location: the whole SF Bay Area, plus remote ----------
   locations_any:
     - bay area
     - san francisco
@@ -139,8 +142,8 @@ filters:
     - hayward
     - remote
 
-  # 地点黑名单，比白名单先跑。
-  # 因为白名单里有 "remote"，不排掉的话 "Remote Spain" 这种会混进来。
+  # Location blocklist; runs before the allowlist.
+  # Needed because "remote" is on the allowlist — without this, "Remote Spain" gets in.
   locations_exclude_any:
     - spain
     - poland
@@ -186,24 +189,25 @@ filters:
     - vietnam
     - indonesia
 
-  # ---------- 经验年限 ----------
-  # 从岗位描述里读出的最低年限要求，超过这个数就扔掉。
-  # 你是应届生，1 表示 "0-1 年可以，2+ years 一律不要"。
-  # 读不到描述、或描述没提年限的，一律保留（见 apply_filters 里的说明）。
-  # 目前 greenhouse / lever / ashby 能读到描述；smartrecruiters / workday 读不到。
+  # ---------- Years of experience ----------
+  # Minimum years required, as read from the job description. Anything above this is dropped.
+  # 1 means "0-1 years is fine, 2+ years is out".
+  # Jobs with no description, or whose description never mentions years, are kept
+  # (see the comment in apply_filters).
+  # Descriptions are available for greenhouse / lever / ashby; not for smartrecruiters / workday.
   max_years_experience: 1
 
   max_age_days: 14
 
-  # 地点字段为空的岗位：keep 保留 / drop 丢弃
-  # 1200 家公司里空地点很多，keep 会很吵，所以设 drop
+  # Jobs with an empty location field: keep / drop.
+  # Empty locations are common across thousands of boards and "keep" gets noisy, so drop.
   unknown_location: drop
 
 output:
   markdown: digest.md
   telegram:
-    # token 和 chat_id 走环境变量，不写在这个文件里
-    # GitHub 上配在 Settings -> Secrets and variables -> Actions
+    # The bot token and chat_id come from environment variables, never from this file.
+    # On GitHub, set them under Settings -> Secrets and variables -> Actions.
     enabled: true
   max_items: 60
 

@@ -1,114 +1,198 @@
 # job-radar
 
-每天扫一遍 1200 家公司的招聘板，只告诉你**新出现**的应届/入门级岗位。
-看完花 10 分钟投递。
+A small job-alert bot for new-grad software engineering roles. Twice a day it scans
+~2,400 company job boards, keeps only entry-level engineering jobs in the SF Bay Area
+(or US remote), and pushes the ones it hasn't reported before to Telegram.
 
-不爬 LinkedIn / Indeed，只打各家 ATS 自己的公开 JSON 接口，所以不会被封号，
-也不需要登录态和验证码。
+It doesn't scrape LinkedIn or Indeed. It only calls the public JSON endpoints that
+applicant tracking systems (ATS) expose for each company's careers page, so it needs
+no login, hits no CAPTCHAs, and can't get an account banned.
 
-当前配置：**1205 家公司**（`companies.yaml`），约 7.5 万个岗位，
-按"应届生 + 湾区/美国远程"过滤后剩 130 个左右。抓完一轮约 60 秒。
+It only finds jobs. Applying stays manual.
 
-## 跑在 GitHub Actions 上（当前方案）
+## At a glance
 
-`.github/workflows/daily.yml` 每天 **18:00 UTC = 太平洋时间 11:00** 自动跑，
-结果通过 Telegram 推到手机。电脑关机也照跑。
-
-冬令时（11 月～3 月）UTC 差值变成 8 小时，想拨回 11 点就把 cron 里的 `18` 改成 `19`。
-
-需要在仓库 Settings → Secrets and variables → Actions 配两个 secret：
-`TELEGRAM_BOT_TOKEN` 和 `TELEGRAM_CHAT_ID`。
-
-**仓库必须设 private。** `seen.json` 和 `digest.md` 会暴露你在看哪些公司、投了什么。
-
-### 本地计划任务（已停用）
-
-Windows 计划任务 `job-radar` 还在，但已 disable，免得和云上各写各的 `seen.json`。
-想切回本地：
-
-```bash
-schtasks /Change /TN "job-radar" /ENABLE
-```
-
-切回本地的话记得把 GitHub 上的 workflow 关掉。
-
-## 手动跑
-
-```bash
-python jobradar.py              # 每天跑，只出新的
-python jobradar.py --verify     # 检查公司 token 是否还活着
-python jobradar.py --all        # 忽略状态，输出所有命中
-```
-
-结果写在 `digest.md`。
-
-## 三个命令
-
-| 命令 | 用途 |
+| | |
 |---|---|
-| `--verify` | 只检查公司 token，不输出岗位。加新公司时用 |
-| `--all` | 忽略 `seen.json`，输出所有命中的。调过滤规则时用 |
-| `--dry-run` | 跑但不写 `seen.json`。可以反复跑同样的结果 |
+| Boards scanned | 2,446 (`companies.yaml`) |
+| Postings fetched per run | ~120,000 |
+| Matches in a 14-day window | ~100 |
+| Run time | ~3.5 minutes on a GitHub Actions runner |
+| Schedule | 09:06 and 11:36 Pacific, daily |
+| Delivery | Telegram, plus `digest.md` in the repo |
+| Dependencies | Python 3.10+, `pyyaml` |
 
-调规则的正确姿势是 `--all --dry-run` 组合，改一次 `config.yaml` 跑一次，
-直到输出里没有明显噪音为止。
+## How it works
 
-## 加公司
+```
+companies.yaml ──► fetch (12 threads) ──► filter ──► dedup against seen.json ──► digest.md + Telegram
+                   5 ATS adapters          title / location /       only jobs never           commit seen.json
+                                           experience / age         shown before              back to the repo
+```
 
-打开那家公司的招聘页，看地址栏：
+1. **Fetch.** One adapter per ATS turns that vendor's JSON into a common `Job` record.
+   One broken board is logged and skipped; it never fails the run.
+2. **Filter.** Title allowlist and blocklist, location allowlist and blocklist,
+   posting age, and the minimum years of experience read from the job description.
+3. **Dedup.** Every job has a stable key (`source:company:job_id`). `seen.json` records
+   the keys already shown, so a job is reported once even if its timestamp is refreshed.
+4. **Deliver.** Write `digest.md`, send it to Telegram (split across messages because
+   of Telegram's 4,096-character limit), then commit `seen.json` back to the repo.
 
-| 地址长这样 | 填到 config 的 |
+## Data sources
+
+| ATS | Boards | Job description available? | Notes |
+|---|---:|---|---|
+| Greenhouse | 512 | Yes, `?content=true` | Response is ~12x larger, but it's still one request |
+| Ashby | 347 | Yes, `descriptionPlain` | |
+| Lever | 187 | Yes, `descriptionPlain` | |
+| SmartRecruiters | 159 | No | Would take one extra request per job |
+| Workday | 1,241 | No | Would take one extra request per job |
+
+The company list was built by extracting ATS tokens from the job URLs in
+[SimplifyJobs/New-Grad-Positions](https://github.com/SimplifyJobs/New-Grad-Positions)
+and checking each one against its live API.
+
+**Workday quirks** (learned the hard way):
+- `limit` is hard-capped at 20. Asking for 25 returns HTTP 400.
+- Results are sorted newest-first **only when `searchText` is empty**. Any search text
+  switches the sort to relevance, and page 1 fills up with month-old postings. So the
+  adapter fetches the newest `workday_pages` pages unfiltered and filters locally.
+
+## Filtering
+
+All rules live in [`config.yaml`](config.yaml). Entries are case-insensitive substrings;
+entries starting with `re:` are regular expressions.
+
+| Rule | Purpose |
+|---|---|
+| `include_any` | Title must look like an engineering role |
+| `exclude_any` | Drop senior, staff, lead, L4+, II/III, managers, interns, and non-engineering roles |
+| `boost_any` | Titles that say new grad / entry level / Engineer I / L3 get a ⭐ and sort first |
+| `locations_any` | Bay Area cities and `remote` |
+| `locations_exclude_any` | Runs first, so "Remote – Spain" can't slip in through `remote` |
+| `max_years_experience` | Drop jobs whose description asks for more years than this (currently 1) |
+| `max_age_days` | Ignore postings older than this |
+
+### Reading experience requirements from descriptions
+
+Titles almost never state experience. A job titled just "Software Engineer" might take
+new grads or might want five years. So the Greenhouse, Lever, and Ashby adapters parse
+the description as it arrives and keep a single number, `min_years`. The description
+text itself is thrown away, since keeping 120k of them in memory would be wasteful.
+
+`extract_min_years` matches phrases like `3+ years`, `3-5 years`, and `3 to 5 years`,
+but only when they appear near the word "experience". It skips phrases about company
+history ("founded 5 years ago", "over the past 3 years"). It takes the **minimum** match,
+so "0-2 years" counts as 0.
+
+The design choice that matters: **if no requirement can be found, the job is kept.**
+A false negative means you silently never see a job you could have applied to, which
+is worse than an extra link to skip. Adding the description check cut matches from
+145 to 87; everything it removed asked for 2+ years.
+
+## Dedup and rollover
+
+`output.max_items` (60) caps how many jobs go out per run. Only jobs that were actually
+shown are written to `seen.json`. The rest stay "new" and roll over to the next run, so
+a burst of 100+ postings is spread over a few runs instead of being silently dropped.
+
+Entries older than `state.forget_after_days` (120) are pruned so the file doesn't grow forever.
+
+## Scheduling
+
+The scan runs on GitHub Actions ([`.github/workflows/daily.yml`](.github/workflows/daily.yml)),
+so it runs whether or not any personal machine is on.
+
+GitHub's scheduled workflows are best-effort, and runs set for the top of the hour
+queue badly. With `0 18 * * *`, the observed start delays were **4h17m and 7h53m**.
+The workflow now:
+
+- schedules at off-peak minutes: `6 16` and `36 18` UTC, which is 09:06 and 11:36 PDT;
+- runs **twice**, so at least one run is likely done by noon. The second run also
+  catches jobs posted that morning, and dedup means the two runs never repeat a job;
+- has `timeout-minutes: 45`;
+- sends a Telegram alert with the run URL if any step fails. Without that, a failed
+  run looks exactly like a day with no new jobs.
+
+cron is UTC and ignores daylight saving. In winter (PST, UTC-8) both runs fire an hour
+earlier in local time; add 1 to each hour field to compensate.
+
+## Setup
+
+1. **Create a Telegram bot.** Message `@BotFather`, send `/newbot`, and copy the token.
+2. **Find your chat ID.** Open the new bot's chat, press **Start**, send it any message, then:
+   ```bash
+   TELEGRAM_BOT_TOKEN="<token>" python jobradar.py --telegram-setup
+   ```
+   This prints your `chat_id`.
+3. **Push this repo to a private GitHub repository.** `seen.json` and `digest.md` show
+   which companies you're tracking.
+4. **Add repository secrets** under Settings → Secrets and variables → Actions:
+   `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`.
+5. **Allow the workflow to push.** Settings → Actions → General → Workflow permissions →
+   **Read and write permissions**. Without this, `seen.json` never gets saved and the
+   same jobs come back every day.
+6. **Test it:** Actions tab → `job-radar` → **Run workflow**.
+
+## Running locally
+
+```bash
+pip install -r requirements.txt
+python jobradar.py              # normal run: only new jobs, updates seen.json
+python jobradar.py --verify     # check every company token still resolves
+python jobradar.py --all        # ignore seen.json and print every match
+python jobradar.py --dry-run    # run without writing seen.json
+```
+
+To tune filters, combine `--all --dry-run`: edit `config.yaml`, rerun, and repeat until
+the output is free of noise.
+
+[`run.bat`](run.bat) is an optional entry point for Windows Task Scheduler. It's not in
+use now. Running it alongside the GitHub workflow would give you two `seen.json` files
+that drift apart.
+
+## Adding companies
+
+Look at the company's careers page URL:
+
+| URL looks like | Add to `companies.yaml` |
 |---|---|
 | `boards.greenhouse.io/stripe` | `greenhouse: [stripe]` |
 | `jobs.lever.co/plaid` | `lever: [plaid]` |
 | `jobs.ashbyhq.com/linear` | `ashby: [linear]` |
 | `jobs.smartrecruiters.com/Acme` | `smartrecruiters: [Acme]` |
+| `nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite` | `workday: ["nvidia.wd5.myworkdayjobs.com\|nvidia\|NVIDIAExternalCareerSite"]` |
 
-有些公司自建招聘页，但底下还是这几家 ATS —— 右键查看网页源码搜
-`greenhouse` / `lever` / `ashby` 通常能找到。
+Custom careers pages usually still run on one of these ATSs underneath. Searching the
+page source for `greenhouse`, `lever`, or `ashby` usually finds it. Run `--verify`
+afterwards; a 404 means the token is wrong.
 
-填完跑 `--verify`，404 就是 token 不对。
+## Adding a data source
 
-## 挂到 GitHub Actions 上
+Write a function modeled on `from_greenhouse` that returns a list of `Job`, and register
+it in `ADAPTERS`. The `key` must be globally unique; use `source:company:job_id`. If the
+API returns descriptions, set `min_years=extract_min_years(...)` so the experience
+filter applies.
 
-`.github/workflows/daily.yml` 已经配好了，推到一个仓库就会每个工作日
-早上自动跑，结果写进 `digest.md` 并显示在 Actions 的 Summary 页面。
-
-想要推送到手机，在 config 里打开 telegram，然后在仓库
-Settings → Secrets 里加 `TELEGRAM_BOT_TOKEN` 和 `TELEGRAM_CHAT_ID`。
-
-**仓库设成 private。** `seen.json` 和 `digest.md` 会暴露你在看哪些公司。
-
-## 每天只推 60 个，剩下的顺延
-
-`output.max_items: 60` 是显示上限。**没展示出来的不会被记进 `seen.json`**，
-所以会留到第二天继续推 —— 一次涌进来 100 多个也不会漏。
-第一天有 137 个积压，大概三天推完。
-
-## ⭐ 是什么
-
-标题里明确写着 new grad / entry level / Engineer I / L3 之类的，会标 ⭐ 排在最前面。
-其余的是标题看不出资历的工程岗（通常写着 "Software Engineer"），
-这类里混着 3-5 年经验的岗位，标题过滤不掉，得你自己点进去看。
-
-## 两个会踩的坑
-
-**第一版一定会很吵。** 头几天的时间基本都花在往 `exclude_any` 里加词，
-而不是写代码。`staff` / `principal` / `manager` 这类是大头，另外注意
-`exclude_any` 是子串匹配 —— 加 `staff` 会连 `Staffing Coordinator` 一起干掉，
-一般这正是你想要的。
-
-**有些板子会刷新老岗位的时间戳。** `max_age_days` 用的是发布时间，
-但去重靠的是 job id，所以一个岗位不会被重复推送 —— 除非公司把它删了重发，
-那种情况没办法。
-
-## 加新的数据源
-
-在 `jobradar.py` 里照着 `from_greenhouse` 写一个函数，返回 `Job` 列表，
-注册到 `ADAPTERS` 就行。`key` 必须全局唯一，格式 `来源:公司:岗位id`。
-
-## 自测
+## Tests
 
 ```bash
-python _selftest.py    # 离线跑，不联网，验证过滤和去重逻辑
+python _selftest.py
 ```
+
+Runs offline against fake API responses. Covers filtering, dedup and pruning, the
+experience parser (including the "N years ago" false-positive cases), Workday
+relative-date parsing and pagination, and Markdown rendering.
+
+## Known limitations
+
+- **Some big employers aren't covered.** Apple, Amazon, and TikTok run their own careers
+  sites, and JPMorgan and others use Oracle Cloud. None of them have a public JSON feed
+  like the ATSs above.
+- **No experience filter for SmartRecruiters or Workday.** Their list endpoints don't
+  include descriptions, so those jobs are filtered on title only.
+- **Workday rate limits.** About 2,500 Workday requests per run occasionally draw HTTP
+  429s, and GitHub's shared runner IPs make that more likely. Affected boards are listed
+  under "Fetch errors" in the digest. Retrying with backoff would help.
+- **Schedule timing isn't guaranteed.** See [Scheduling](#scheduling).

@@ -1,4 +1,4 @@
-"""离线自测: 用假数据验证过滤和去重逻辑，不联网。"""
+"""Offline self-test: checks filtering and dedup logic against fake data. No network."""
 import json, sys, tempfile
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -58,16 +58,16 @@ assert not errors
 
 kept = jobradar.apply_filters(jobs, CFG["filters"])
 titles = sorted(j.title for j in kept)
-print("过滤后:", titles)
+print("after filters:", titles)
 assert titles == ["Full Stack Engineer", "ML Engineer",
                   "Software Engineer, Backend"], titles
-# 2 被 exclude 掉, 3 地点不符, 4 太老, 5 地点为空但 keep
+# 2 is excluded, 3 is the wrong location, 4 is too old, 5 has no location but "keep"
 
-# 地点为空改成 drop
+# Empty location with "drop"
 f2 = dict(CFG["filters"], unknown_location="drop")
 assert len(jobradar.apply_filters(jobs, f2)) == 2
 
-# 去重
+# Dedup
 with tempfile.TemporaryDirectory() as d:
     sp = Path(d) / "seen.json"
     state = jobradar.load_state(sp)
@@ -81,14 +81,14 @@ with tempfile.TemporaryDirectory() as d:
 
     state2 = jobradar.load_state(sp)
     fresh2 = [j for j in kept if j.key not in state2]
-    assert len(fresh2) == 0, "第二次跑应该没有新岗位"
+    assert len(fresh2) == 0, "a second run should find nothing new"
 
-    # 过期清理
+    # Expiry pruning
     state2["greenhouse:acme:999"] = (now - timedelta(days=200)).isoformat()
     dropped = jobradar.save_state(sp, state2, 120)
     assert dropped == 1, dropped
 
-# 经验年限：从描述里读最低要求
+# Years of experience: read the minimum requirement from the description
 for text, want in [
     ("We require 5+ years of experience", 5),
     ("0-2 years of experience preferred", 0),
@@ -96,7 +96,7 @@ for text, want in [
     ("Minimum 3 to 5 years experience required", 3),
     ("You have 1-3 years of relevant experience", 1),
     ("Requires at least 2 years experience", 2),
-    # 下面这些是在讲公司历史，不是经验要求，不能误判
+    # These describe company history, not a requirement — must not be misread
     ("Figma was founded 5 years ago. No experience needed.", -1),
     ("Over the past 3 years our experience team grew", -1),
     ("In the last 10 years, experience has shown", -1),
@@ -105,11 +105,11 @@ for text, want in [
     (None, -1),
 ]:
     got = jobradar.extract_min_years(text)
-    assert got == want, f"{text!r} -> {got}, 期望 {want}"
+    assert got == want, f"{text!r} -> {got}, expected {want}"
 
 assert jobradar.strip_html("<p>Hi &amp; <b>bye</b></p>") == "Hi & bye"
 
-# max_years_experience: 读不到年限(-1)的必须保留，超标的必须扔
+# max_years_experience: unknown years (-1) must be kept, over-limit must be dropped
 exp_jobs = [
     jobradar.Job("a", "greenhouse", "c", "Software Engineer", "Remote", "u", "", min_years=-1),
     jobradar.Job("b", "greenhouse", "c", "Software Engineer", "Remote", "u", "", min_years=0),
@@ -120,7 +120,7 @@ got = {j.key for j in jobradar.apply_filters(
     exp_jobs, {"include_any": ["software engineer"], "max_years_experience": 1})}
 assert got == {"a", "b"}, got
 
-# Workday: 相对日期解析 + 翻页在不足一页时提前停
+# Workday: relative-date parsing, and paging stops early on a short page
 assert jobradar.parse_posted_on("Posted Today")[:4].isdigit()
 assert jobradar.parse_posted_on("Posted 5 Days Ago")[:10] == \
     (now - timedelta(days=5)).date().isoformat()
@@ -144,15 +144,15 @@ def fake_post(url, payload, retries=2):
 
 jobradar.post_json = fake_post
 wd = jobradar.from_workday("x.wd5.myworkdayjobs.com|acme|Ext", pages=3)
-assert len(wd) == 1, wd            # 只回 1 条 < 20，应该停在第一页
+assert len(wd) == 1, wd            # 1 posting < 20, so it should stop after page 1
 assert WD_CALLS == [0], WD_CALLS
 assert wd[0].url == "https://x.wd5.myworkdayjobs.com/en-US/Ext/job/abc"
 assert wd[0].key == "workday:acme:Ext:/job/abc"
 assert wd[0].age_days == 0
 
-# 渲染
-md = jobradar.render_markdown(kept, [("greenhouse", "bad", "token 可能不对")])
+# Rendering
+md = jobradar.render_markdown(kept, [("greenhouse", "bad", "token may be wrong")])
 assert "acme" in md and "bad" in md
-print("\n--- markdown 预览 ---")
+print("\n--- markdown preview ---")
 print(md)
-print("\n全部通过 ✓")
+print("\nAll tests passed ✓")
