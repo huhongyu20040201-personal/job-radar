@@ -2,27 +2,28 @@ name: job-radar
 
 on:
   schedule:
-    # cron 只认 UTC，而且不懂夏令时。夏令时 PDT = UTC-7。
+    # cron is UTC-only and knows nothing about daylight saving. PDT = UTC-7.
     #
-    # 实测延迟（都是 "0 18" 这种整点）：
-    #   08-05 计划 18:00 -> 实际 22:17，晚 4h17m
-    #   08-06 计划 18:00 -> 实际 01:53(次日)，晚 7h53m
-    # GitHub 的 schedule 是尽力而为，整点排队尤其严重。
+    # Observed start delays (both with an on-the-hour "0 18" schedule):
+    #   08-05 scheduled 18:00 -> started 22:17, 4h17m late
+    #   08-06 scheduled 18:00 -> started 01:53 next day, 7h53m late
+    # GitHub schedules are best-effort, and the top of the hour is the most congested.
     #
-    # 对策一：避开整点，挑冷门分钟。
-    # 对策二：一天跑两次。目标是"中午前至少有一次已经跑完"，
-    #         早跑那次万一延迟，晚跑那次兜底；去重保证不会重复推同一个岗位。
-    - cron: "6 16 * * *"      # 09:06 PDT —— 主力
-    - cron: "36 18 * * *"     # 11:36 PDT —— 兜底，同时补上早上新发的岗位
-  workflow_dispatch:        # 也可以在 Actions 页面手动点一下
+    # Mitigation 1: avoid :00 and pick an off-peak minute.
+    # Mitigation 2: run twice a day, so at least one run has finished before noon.
+    #   If the early run is delayed, the later one covers for it; dedup guarantees
+    #   the same job is never pushed twice.
+    - cron: "6 16 * * *"      # 09:06 PDT — primary
+    - cron: "36 18 * * *"     # 11:36 PDT — backup, also catches jobs posted that morning
+  workflow_dispatch:        # can also be triggered manually from the Actions tab
 
 permissions:
-  contents: write           # 需要写回 seen.json
+  contents: write           # needed to commit seen.json back
 
 jobs:
   scan:
     runs-on: ubuntu-latest
-    # 正常跑几分钟就完。卡住的话早点掐掉，别占满默认的 6 小时。
+    # A normal run takes a few minutes. Kill a stuck one early instead of burning the default 6 hours.
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
@@ -39,25 +40,26 @@ jobs:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python jobradar.py
 
-      # seen.json 必须写回仓库，否则每天都是全新状态，会把同样的岗位重复推给你
+      # seen.json must be committed back; otherwise every run starts from scratch
+      # and re-sends the same jobs every day.
       - name: Commit state
         run: |
           git config user.name  "job-radar"
           git config user.email "actions@github.com"
           git add seen.json digest.md
-          git diff --staged --quiet && echo "无变化" && exit 0
+          git diff --staged --quiet && echo "No changes" && exit 0
           git commit -m "scan $(date -u +%F)"
           git pull --rebase --autostash
           git push
 
-      # 摘要也会出现在 Actions 运行页面的 Summary 里
+      # The digest also shows up in the run's Summary page
       - name: Show digest
         if: always()
         run: cat digest.md >> $GITHUB_STEP_SUMMARY
 
-      # 挂了也要吭一声。否则失败是静默的 —— 你只会觉得"今天怎么没岗位"，
-      # 而分不清是真没有新岗位，还是根本没跑成。
-      - name: 失败时推送告警
+      # Speak up on failure. Otherwise a failed run is silent — you'd just think
+      # "no new jobs today" and couldn't tell that from "it never ran".
+      - name: Alert on failure
         if: failure()
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -67,5 +69,5 @@ jobs:
           curl -sS -X POST \
             "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" \
             --data-urlencode "chat_id=$TELEGRAM_CHAT_ID" \
-            --data-urlencode "text=⚠️ job-radar 今天没跑成，日志：$RUN_URL" \
+            --data-urlencode "text=⚠️ job-radar run failed today. Logs: $RUN_URL" \
             -o /dev/null

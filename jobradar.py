@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """
-job-radar — 每天扫一遍你关心的公司招聘板，只告诉你新出现的岗位。
+job-radar — scan company job boards daily and report only the postings that are new.
 
-用法:
-    python jobradar.py                 # 正常跑一次
-    python jobradar.py --verify        # 只检查 config 里的公司 token 对不对
-    python jobradar.py --dry-run       # 跑但不写 state（反复调过滤规则时用）
-    python jobradar.py --all           # 忽略 state，输出所有命中的岗位
+Usage:
+    python jobradar.py                   # normal run
+    python jobradar.py --verify          # only check that the company tokens resolve
+    python jobradar.py --dry-run         # run without writing state (for tuning filters)
+    python jobradar.py --all             # ignore state and print every match
+    python jobradar.py --telegram-setup  # find your Telegram chat_id and send a test message
 """
 
 import argparse
@@ -26,32 +27,32 @@ from pathlib import Path
 try:
     import yaml
 except ImportError:
-    sys.exit("需要 pyyaml:  pip install pyyaml")
+    sys.exit("pyyaml is required:  pip install pyyaml")
 
 UA = "job-radar/1.0 (personal job alert script)"
 TIMEOUT = 20
 
-# Windows 控制台默认不是 UTF-8，中文和 ✓/✗ 会直接抛 UnicodeEncodeError
+# The Windows console isn't UTF-8 by default; ✓/✗/⭐ would raise UnicodeEncodeError
 for _stream in (sys.stdout, sys.stderr):
     if hasattr(_stream, "reconfigure"):
         _stream.reconfigure(encoding="utf-8", errors="replace")
 
 
 # --------------------------------------------------------------------------
-# 数据结构
+# Data model
 # --------------------------------------------------------------------------
 
 @dataclass
 class Job:
-    key: str            # 全局唯一去重键
+    key: str            # globally unique dedup key
     source: str         # greenhouse / lever / ...
     company: str
     title: str
     location: str
     url: str
-    posted_at: str      # ISO 字符串，拿不到就是 ""
-    starred: bool = False   # 标题明确写着 new grad / entry level 之类
-    min_years: int = -1     # 描述里要求的最低年限；-1 = 没读到描述或没提年限
+    posted_at: str      # ISO string, "" if unknown
+    starred: bool = False   # title explicitly says new grad / entry level / etc.
+    min_years: int = -1     # minimum years required by the description; -1 = unknown
 
     @property
     def age_days(self):
@@ -62,10 +63,10 @@ class Job:
 
 
 def parse_dt(value):
-    """把各家五花八门的时间格式统一成 aware datetime。"""
+    """Normalize each ATS's timestamp format into an aware datetime."""
     if not value:
         return None
-    if isinstance(value, (int, float)):          # lever 用毫秒时间戳
+    if isinstance(value, (int, float)):          # Lever uses epoch milliseconds
         try:
             return datetime.fromtimestamp(value / 1000, tz=timezone.utc)
         except (ValueError, OSError):
@@ -78,11 +79,12 @@ def parse_dt(value):
 
 
 # --------------------------------------------------------------------------
-# 经验年限：招聘启事几乎从不把年限写进标题，只能从描述里读
+# Experience requirements: postings almost never put years in the title,
+# so the only reliable place to read them is the description.
 # --------------------------------------------------------------------------
 
 _TAG = re.compile(r"<[^>]+>")
-# "3+ years" / "3-5 years" / "3 to 5 years"，取打头那个数字
+# "3+ years" / "3-5 years" / "3 to 5 years" — capture the leading number
 _YEARS = re.compile(r"(\d{1,2})\s*(?:\+|\s*(?:-|–|to)\s*\d{1,2}\s*\+?)?\s*year", re.I)
 
 
@@ -91,30 +93,32 @@ def strip_html(s):
 
 
 def extract_min_years(text):
-    """描述里要求的最低经验年限。读不出来返回 -1。
+    """Minimum years of experience the description asks for, or -1 if none found.
 
-    取所有匹配里的**最小值**，因为岗位常写 "0-2 years" 或者在别处提到
-    "founded 5 years ago"。取最小值会偏向保留 —— 宁可多推一个让你自己看，
-    也不要把能投的岗位悄悄藏掉。
+    Takes the **smallest** match, because postings often say "0-2 years" or
+    mention unrelated durations elsewhere. Taking the minimum biases toward
+    keeping a job: better to show one extra posting than to silently hide one
+    you could have applied to.
     """
     if not text:
         return -1
     low = text.lower()
     best = -1
     for m in _YEARS.finditer(low):
-        # 只认 "experience" 附近的年限，否则 "5 years ago" 之类会误伤
-        # "founded 5 years ago" / "over the past 3 years" 是在讲公司历史，
-        # 不是经验要求 —— 但它们常常离 "experience" 很近，不排掉会误伤。
+        # "founded 5 years ago" / "over the past 3 years" describe company
+        # history, not a requirement — but they often sit right next to the
+        # word "experience", so they have to be ruled out explicitly.
         if re.match(r"s?\s+ago\b", low[m.end():m.end() + 10]):
             continue
         if re.search(r"\b(?:past|last|previous|next|first)\s+$",
                      low[max(0, m.start() - 15):m.start()]):
             continue
+        # Only count years that appear near "experience"
         window = low[max(0, m.start() - 80): m.end() + 80]
         if "experience" not in window and "exp." not in window:
             continue
         n = int(m.group(1))
-        if n > 30:                     # 明显不是年限
+        if n > 30:                     # clearly not a years-of-experience number
             continue
         if best < 0 or n < best:
             best = n
@@ -122,7 +126,7 @@ def extract_min_years(text):
 
 
 # --------------------------------------------------------------------------
-# 抓取
+# Fetching
 # --------------------------------------------------------------------------
 
 def fetch_json(url, retries=2):
@@ -140,8 +144,8 @@ def fetch_json(url, retries=2):
 
 
 def from_greenhouse(company):
-    # content=true 会让响应大 10 倍，但不多花一个请求，
-    # 而经验年限只写在描述里，值这个流量。
+    # content=true makes the response ~10x larger but costs no extra request,
+    # and the experience requirement only lives in the description.
     url = f"https://boards-api.greenhouse.io/v1/boards/{company}/jobs?content=true"
     data = fetch_json(url)
     out = []
@@ -212,7 +216,7 @@ def from_smartrecruiters(company):
             company=company,
             title=j.get("name", ""),
             location=", ".join(x for x in (city, country) if x),
-            # 不要用 j["ref"]，那是 API 地址，人点不进去
+            # Don't use j["ref"] — that's an API URL, not a page a person can open
             url=f"https://jobs.smartrecruiters.com/{company}/{j['id']}",
             posted_at=j.get("releasedDate", "") or "",
         ))
@@ -237,7 +241,7 @@ def post_json(url, payload, retries=2):
     raise last
 
 
-# Workday 不给日期，只给 "Posted 3 Days Ago" 这种相对文本
+# Workday gives no dates, only relative text like "Posted 3 Days Ago"
 _POSTED = re.compile(r"(\d+)\s*\+?\s*days?", re.IGNORECASE)
 
 
@@ -256,15 +260,15 @@ def parse_posted_on(text):
 
 
 def from_workday(spec, pages=1):
-    """spec 格式: host|tenant|site
+    """spec format: host|tenant|site
 
-    Workday 的 limit 硬上限是 20，但结果按发布时间倒序，
-    所以每天只取最新的一两页就够了 —— 不用翻完几千条。
+    Workday hard-caps page size at 20, but results come back newest-first,
+    so the first page or two per day is enough — no need to page through thousands.
     """
     try:
         host, tenant, site = spec.split("|")
     except ValueError:
-        raise ValueError(f"workday 条目格式应为 host|tenant|site，收到: {spec}")
+        raise ValueError(f"workday entries must look like host|tenant|site, got: {spec}")
 
     api = f"https://{host}/wday/cxs/{tenant}/{site}/jobs"
     out = []
@@ -298,15 +302,16 @@ ADAPTERS = {
 
 
 def collect(sources, workers=12, verbose=False, workday_pages=1):
-    """并发跑遍所有配置的公司。单个公司挂掉不影响其他的。
+    """Fetch every configured board concurrently. One failing board doesn't affect the rest.
 
-    公司数上千时串行要跑半小时，所以这里用线程池。workers 别调太高，
-    12 左右已经能在 1 分钟内跑完 1200 家，再高容易吃到对方限流。
+    With thousands of boards a serial run would take half an hour, hence the
+    thread pool. Don't push `workers` much higher: 12 gets through ~2,400
+    boards in 3-4 minutes, and more mostly just earns HTTP 429s.
     """
     tasks, errors = [], []
     for source, companies in (sources or {}).items():
         if source not in ADAPTERS:
-            errors.append((source, "-", "未知来源，支持: " + ", ".join(ADAPTERS)))
+            errors.append((source, "-", "unknown source; supported: " + ", ".join(ADAPTERS)))
             continue
         for company in companies or []:
             tasks.append((source, company))
@@ -318,7 +323,7 @@ def collect(sources, workers=12, verbose=False, workday_pages=1):
                 return task, from_workday(company, pages=workday_pages), None
             return task, ADAPTERS[source](company), None
         except urllib.error.HTTPError as exc:
-            return task, [], ("token 可能不对" if exc.code == 404
+            return task, [], ("token may be wrong" if exc.code == 404
                               else f"HTTP {exc.code}")
         except Exception as exc:                  # noqa: BLE001
             return task, [], str(exc)[:80]
@@ -331,7 +336,7 @@ def collect(sources, workers=12, verbose=False, workday_pages=1):
             if err is None:
                 jobs.extend(found)
                 if verbose:
-                    print(f"  ✓ {source}/{company}: {len(found)} 个岗位",
+                    print(f"  ✓ {source}/{company}: {len(found)} jobs",
                           file=sys.stderr)
             else:
                 errors.append((source, company, err))
@@ -343,7 +348,7 @@ def collect(sources, workers=12, verbose=False, workday_pages=1):
 
 
 def load_sources(config, config_path):
-    """公司名单可以放在 config 里，也可以拆到单独文件（上千家时更好管）。"""
+    """The company list can live in config.yaml or in a separate file (easier with thousands)."""
     ref = config.get("sources_file")
     if not ref:
         return config.get("sources")
@@ -352,14 +357,14 @@ def load_sources(config, config_path):
         p = Path(config_path).parent / p
     loaded = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
     merged = dict(loaded.get("sources") or {})
-    # config.yaml 里额外写的公司会并进来，方便临时加几家
+    # Extra companies listed directly in config.yaml get merged in — handy for quick additions
     for source, extra in (config.get("sources") or {}).items():
         merged[source] = sorted(set(merged.get(source) or []) | set(extra or []))
     return merged
 
 
 # --------------------------------------------------------------------------
-# 过滤
+# Filtering
 # --------------------------------------------------------------------------
 
 def matches_any(text, patterns):
@@ -389,7 +394,8 @@ def apply_filters(jobs, f):
             continue
         if matches_any(job.title, exclude):
             continue
-        # 地点黑名单先跑：光靠 "remote" 白名单会把 Remote Spain 之类放进来
+        # Location blocklist runs first: the "remote" allowlist entry alone
+        # would otherwise let things like "Remote Spain" through.
         if loc_exclude and matches_any(job.location, loc_exclude):
             continue
         if locations:
@@ -398,8 +404,8 @@ def apply_filters(jobs, f):
                     continue
             elif not matches_any(job.location, locations):
                 continue
-        # 经验年限。min_years == -1 表示读不到描述或描述没提年限，那就放行 ——
-        # 宁可让你自己点进去看一眼，也不要悄悄藏掉能投的岗位。
+        # Experience. min_years == -1 means no description or no years mentioned;
+        # keep those — better to let you click through than silently hide a job you could apply to.
         if max_years is not None and job.min_years >= 0 and job.min_years > max_years:
             continue
         if max_age is not None:
@@ -408,13 +414,13 @@ def apply_filters(jobs, f):
                 continue
         job.starred = bool(boost) and matches_any(job.title, boost)
         kept.append(job)
-    # 明确写着应届的排前面，其余按新旧排
+    # Explicit new-grad roles first, then newest first
     kept.sort(key=lambda j: (not j.starred, j.age_days if j.age_days is not None else 999))
     return kept
 
 
 # --------------------------------------------------------------------------
-# 状态（去重的核心）
+# State (the core of deduplication)
 # --------------------------------------------------------------------------
 
 def load_state(path):
@@ -424,7 +430,7 @@ def load_state(path):
     try:
         return json.loads(p.read_text(encoding="utf-8"))
     except json.JSONDecodeError:
-        print(f"警告: {path} 读不动，当作空的处理", file=sys.stderr)
+        print(f"warning: can't parse {path}, treating it as empty", file=sys.stderr)
         return {}
 
 
@@ -441,40 +447,40 @@ def save_state(path, state, forget_after_days):
 
 
 # --------------------------------------------------------------------------
-# 输出
+# Output
 # --------------------------------------------------------------------------
 
 def render_markdown(jobs, errors):
     today = datetime.now().strftime("%Y-%m-%d")
     if not jobs:
-        body = f"# 今日新岗位 · {today}\n\n没有新的。\n"
+        body = f"# New jobs · {today}\n\nNothing new today.\n"
     else:
         def entry(j):
-            meta = j.location or "地点未标注"
+            meta = j.location or "location not listed"
             age = j.age_days
             if age is not None:
-                meta += f" · {age} 天前"
+                meta += f" · {age}d ago"
             return f"- [{j.title}]({j.url}) — **{j.company}**  \n  {meta}"
 
         starred = [j for j in jobs if j.starred]
         rest = [j for j in jobs if not j.starred]
-        lines = [f"# 今日新岗位 · {today}", "", f"共 {len(jobs)} 个。", ""]
+        lines = [f"# New jobs · {today}", "", f"{len(jobs)} total.", ""]
         if starred:
-            lines += [f"## ⭐ 明确写着应届 / 入门级（{len(starred)} 个）", ""]
+            lines += [f"## ⭐ Explicitly new grad / entry level ({len(starred)})", ""]
             lines += [entry(j) for j in starred] + [""]
         if rest:
-            lines += [f"## 其余工程岗（{len(rest)} 个）", ""]
+            lines += [f"## Other engineering roles ({len(rest)})", ""]
             lines += [entry(j) for j in rest] + [""]
         body = "\n".join(lines)
 
     if errors:
-        body += "\n---\n\n**抓取失败**\n\n"
+        body += "\n---\n\n**Fetch errors**\n\n"
         for source, company, why in errors:
             body += f"- `{source}/{company}` — {why}\n"
     return body
 
 
-TG_LIMIT = 3800          # Telegram 硬上限是 4096，留点余量
+TG_LIMIT = 3800          # Telegram's hard limit is 4096; leave some headroom
 
 
 def escape_html(s):
@@ -482,10 +488,11 @@ def escape_html(s):
 
 
 def render_telegram(jobs):
-    """切成多条消息返回。60 个岗位远超单条 4096 字符上限，不切会被 Telegram 拒收。"""
+    """Return a list of messages. 60 jobs far exceed the 4096-char limit of a
+    single message, and Telegram rejects oversize messages outright."""
     if not jobs:
         return []
-    header = f"<b>今日新岗位 {len(jobs)} 个</b>"
+    header = f"<b>{len(jobs)} new jobs today</b>"
     entries = []
     for j in jobs:
         star = "⭐ " if j.starred else "• "
@@ -512,7 +519,7 @@ def send_telegram(messages):
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
     if not (token and chat_id):
-        print("跳过 Telegram: 缺 TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID",
+        print("skipping Telegram: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID not set",
               file=sys.stderr)
         return
     for i, text in enumerate(messages):
@@ -527,25 +534,25 @@ def send_telegram(messages):
             data=payload, headers={"User-Agent": UA})
         try:
             urllib.request.urlopen(req, timeout=TIMEOUT).read()
-            print(f"Telegram 已发送 {i+1}/{len(messages)}", file=sys.stderr)
+            print(f"Telegram sent {i+1}/{len(messages)}", file=sys.stderr)
         except urllib.error.HTTPError as exc:
-            print(f"Telegram 发送失败: HTTP {exc.code} "
+            print(f"Telegram send failed: HTTP {exc.code} "
                   f"{exc.read()[:200].decode('utf-8', 'replace')}", file=sys.stderr)
         except Exception as exc:                  # noqa: BLE001
-            print(f"Telegram 发送失败: {exc}", file=sys.stderr)
+            print(f"Telegram send failed: {exc}", file=sys.stderr)
 
 
 def cmd_telegram_setup():
-    """帮你把 chat_id 找出来。先给你的 bot 随便发条消息，再跑这个。"""
+    """Find your chat_id. Send your bot any message first, then run this."""
     token = os.environ.get("TELEGRAM_BOT_TOKEN")
     if not token:
-        print("先设好 TELEGRAM_BOT_TOKEN 环境变量（找 @BotFather 建 bot 拿）",
-              file=sys.stderr)
+        print("Set the TELEGRAM_BOT_TOKEN environment variable first "
+              "(create a bot with @BotFather to get one)", file=sys.stderr)
         return 1
     try:
         data = fetch_json(f"https://api.telegram.org/bot{token}/getUpdates")
     except Exception as exc:                      # noqa: BLE001
-        print(f"拿不到 getUpdates，token 可能不对: {exc}", file=sys.stderr)
+        print(f"getUpdates failed, the token may be wrong: {exc}", file=sys.stderr)
         return 1
     chats = {}
     for upd in data.get("result", []):
@@ -555,14 +562,14 @@ def cmd_telegram_setup():
             name = chat.get("username") or chat.get("title") or chat.get("first_name", "")
             chats[chat["id"]] = name
     if not chats:
-        print("没看到任何消息。先在 Telegram 里给你的 bot 发一条（随便什么），再跑一次。",
+        print("No messages found. Send your bot any message in Telegram, then run this again.",
               file=sys.stderr)
         return 1
-    print("找到这些 chat_id：", file=sys.stderr)
+    print("Found these chat_ids:", file=sys.stderr)
     for cid, name in chats.items():
         print(f"  TELEGRAM_CHAT_ID = {cid}    ({name})", file=sys.stderr)
     if os.environ.get("TELEGRAM_CHAT_ID"):
-        send_telegram(["<b>job-radar</b> 连通测试 ✅"])
+        send_telegram(["<b>job-radar</b> connectivity test ✅"])
     return 0
 
 
@@ -570,27 +577,27 @@ def cmd_telegram_setup():
 
 def cmd_verify(config, sources, workers, wd_pages=1):
     n = sum(len(v or []) for v in (sources or {}).values())
-    print(f"检查 {n} 个公司的 token …\n", file=sys.stderr)
+    print(f"Checking {n} company tokens …\n", file=sys.stderr)
     _, errors = collect(sources, workers=workers, verbose=(n <= 50),
                         workday_pages=wd_pages)
     print("", file=sys.stderr)
     if errors:
-        print("以下需要修:", file=sys.stderr)
+        print("These need fixing:", file=sys.stderr)
         for source, company, why in errors:
             print(f"  {source}/{company} — {why}", file=sys.stderr)
         return 1
-    print("全部正常。", file=sys.stderr)
+    print("All good.", file=sys.stderr)
     return 0
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", default="config.yaml")
-    ap.add_argument("--verify", action="store_true", help="只检查公司 token")
-    ap.add_argument("--dry-run", action="store_true", help="不写 state")
-    ap.add_argument("--all", action="store_true", help="忽略 state，输出全部命中")
+    ap.add_argument("--verify", action="store_true", help="only check company tokens")
+    ap.add_argument("--dry-run", action="store_true", help="don't write state")
+    ap.add_argument("--all", action="store_true", help="ignore state, print every match")
     ap.add_argument("--telegram-setup", action="store_true",
-                    help="找出你的 chat_id 并发一条测试消息")
+                    help="find your chat_id and send a test message")
     args = ap.parse_args()
 
     if args.telegram_setup:
@@ -610,25 +617,25 @@ def main():
     state_path = state_cfg.get("path", "seen.json")
 
     n_co = sum(len(v or []) for v in (sources or {}).values())
-    print(f"抓取 {n_co} 家公司 …", file=sys.stderr)
+    print(f"Fetching {n_co} boards …", file=sys.stderr)
     jobs, errors = collect(sources, workers=workers, verbose=(n_co <= 50),
                            workday_pages=wd_pages)
-    print(f"\n共 {len(jobs)} 个岗位，开始过滤", file=sys.stderr)
+    print(f"\n{len(jobs)} jobs fetched, filtering", file=sys.stderr)
 
     jobs = apply_filters(jobs, config.get("filters") or {})
-    print(f"过滤后 {len(jobs)} 个", file=sys.stderr)
+    print(f"{len(jobs)} after filters", file=sys.stderr)
 
     state = load_state(state_path)
     if args.all:
         fresh = jobs
     else:
         fresh = [j for j in jobs if j.key not in state]
-    print(f"其中新出现 {len(fresh)} 个", file=sys.stderr)
+    print(f"{len(fresh)} of them are new", file=sys.stderr)
 
     max_items = out_cfg.get("max_items")
     shown = fresh[:max_items] if max_items else fresh
     if len(fresh) > len(shown):
-        print(f"（只展示前 {len(shown)} 个）", file=sys.stderr)
+        print(f"(showing the first {len(shown)})", file=sys.stderr)
 
     md = render_markdown(shown, errors)
     md_path = out_cfg.get("markdown")
@@ -643,14 +650,15 @@ def main():
 
     if not args.dry_run:
         now = datetime.now(timezone.utc).isoformat()
-        # 只记实际展示出来的。被 max_items 截掉的留到明天继续推，
-        # 否则一次涌进来 100+ 个的时候，没展示的那些就永远看不到了。
+        # Only record what was actually shown. Anything cut off by max_items
+        # rolls over to the next run; otherwise, on a day with 100+ new jobs,
+        # the ones past the cutoff would never be seen.
         for j in shown:
             state.setdefault(j.key, now)
         dropped = save_state(state_path, state,
                              state_cfg.get("forget_after_days", 120))
         if dropped:
-            print(f"清理了 {dropped} 条过期记录", file=sys.stderr)
+            print(f"pruned {dropped} expired entries", file=sys.stderr)
 
     return 0
 
