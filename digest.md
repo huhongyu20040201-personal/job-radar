@@ -1,40 +1,17 @@
 # New jobs · 2026-09-11
 
-14 total.
+4 total.
 
-## ⭐ Explicitly new grad / entry level (6)
+## Other engineering roles (4)
 
-- [Software Engineer, Early Career 2027](https://jobs.ashbyhq.com/commure/c6a735ef-3d84-4447-94a9-9e8b2dfefced) — **commure**  
-  Mountain View, CA · 0d ago
-- [Financial Analyst (Entry-Level)](https://jobs.lever.co/certik/7d25f5e8-2fed-412c-b182-6568a491483e) — **certik**  
-  New York, New York / Remote · 0d ago
-- [Entry Level QC Reviewer - Vaccines](https://thermofisher.wd5.myworkdayjobs.com/en-US/ThermoFisherCareers/job/Remote-Virginia-USA/Entry-Level-QC-Reviewer---Vaccines_R-01361553) — **thermofisher**  
-  Remote, Virginia, USA · 0d ago
-- [Entry Level Technical Field Advisor (TFA) Steam Turbine](https://gevernova.wd5.myworkdayjobs.com/en-US/only_confidential_executive_recruiting/job/Remote/Entry-Level-Technical-Field-Advisor--TFA--Steam-Turbine_R5044279-1) — **gevernova**  
-  Remote · 0d ago
-- [Entry Level Technical Field Advisor (TFA) Steam Turbine](https://gevernova.wd5.myworkdayjobs.com/en-US/vernova_externalsite/job/Remote/Entry-Level-Technical-Field-Advisor--TFA--Steam-Turbine_R5044279-2) — **gevernova**  
-  Remote · 0d ago
-- [Product Design, Entry-Level (2027 start)](https://job-boards.greenhouse.io/doordashusa/jobs/8188161) — **doordashusa**  
-  San Francisco, CA; New York, NY · 1d ago
-
-## Other engineering roles (8)
-
-- [Full Stack Engineer](https://jobs.ashbyhq.com/clera/b203138a-97bb-4d8d-bfe9-dce3ed003f35) — **clera**  
-  San Mateo · 0d ago
-- [Backend Software Engineer, ChatGPT ImageGen](https://jobs.ashbyhq.com/openai/e7a4ee23-138a-4004-916e-72a452e7d115) — **openai**  
-  San Francisco · 0d ago
-- [Full-Stack Software Engineer, Emerging Products](https://jobs.ashbyhq.com/openai/f7d155c9-06e8-44f0-b2eb-bfa88707f2c1) — **openai**  
-  San Francisco · 0d ago
-- [Machine Learning Engineer](https://jobs.smartrecruiters.com/intuitive/744000149070259) — **intuitive**  
-  Sunnyvale, us · 0d ago
-- [Software Engineer - Applications ](https://jobs.smartrecruiters.com/linkedin3/744000149086949) — **linkedin3**  
-  Mountain View, us · 0d ago
-- [Systems Engineering & Test Capabilities Operations Analyst (Remote)](https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-CA-REMOTE/Systems-Engineering---Test-Capabilities-Operations-Analyst--Remote-_01874292) — **globalhr**  
-  US-CA-REMOTE · 0d ago
-- [Systems Engineering & Test Capabilities Operations Data & Digital Solutions Analyst (Remote)](https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-AZ-REMOTE/Systems-Engineering---Test-Capabilities-Operations-Data---Digital-Solutions-Analyst--Remote-_01874307) — **globalhr**  
-  US-AZ-REMOTE · 0d ago
-- [Software Engineer](https://kla.wd1.myworkdayjobs.com/en-US/UR/job/Milpitas-CA/Software-Engineer_2638274) — **kla**  
-  Milpitas, CA · 1d ago
+- [Software Engineer - Developer Experience, Web](https://job-boards.greenhouse.io/doordashusa/jobs/8197854) — **doordashusa**  
+  San Francisco, CA; Sunnyvale, CA; Los Angeles, CA; Seattle, WA; New York, NY · 0d ago
+- [Machine Learning Engineer](https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/San-Jose/Machine-Learning-Engineer_R171718) — **adobe**  
+  San Jose · 0d ago
+- [Machine Learning Engineer](https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/San-Jose/Machine-Learning-Engineer_R171719) — **adobe**  
+  San Jose · 0d ago
+- [Software Engineer - Pipeline Infrastructure & Integration](https://jobs.lever.co/zoox/978e36ef-e8e9-4874-ade6-f33a80e46309) — **zoox**  
+  Foster City, CA · 3d ago
 
 ---
 
