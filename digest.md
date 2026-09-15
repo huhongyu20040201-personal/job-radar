@@ -1,44 +1,11 @@
 # New jobs · 2026-09-15
 
-16 total.
+1 total.
 
-## ⭐ Explicitly new grad / entry level (3)
+## Other engineering roles (1)
 
-- [Software Engineer, Applied Emerging Talent (2027)](https://jobs.ashbyhq.com/openai/55150071-fce8-48f5-aea4-14ed78b83511) — **openai**  
-  San Francisco · 0d ago
-- [Electrical Engineering New Grad | San Francisco, CA](https://wd1.myworkdaysite.com/en-US/Imeg_Careers/job/San-Francisco-CA/Electrical-Engineering-New-Grad---San-Francisco--CA_R-16410) — **imeg**  
-  San Francisco, CA · 1d ago
-- [Software Engineer I, Entry-Level (Graduation Date: Fall 2026-Summer 2027) - US](https://job-boards.greenhouse.io/doordashusa/jobs/8163709) — **doordashusa**  
-  Los Angeles, CA; New York, NY; San Francisco, CA; Sunnyvale, CA; Seattle, WA · 11d ago
-
-## Other engineering roles (13)
-
-- [Software Engineer, Artificial Intelligence/LLM (Multiple Seniority Levels)](https://jobs.ashbyhq.com/beaconai/6966292a-15d5-49c0-8b3a-0610aaca687e) — **beaconai**  
-  San Carlos  - Hybrid · 0d ago
-- [ML Infrastructure Engineer](https://jobs.ashbyhq.com/clera/8d537344-f8f4-449b-8996-86f8212e59e3) — **clera**  
-  San Mateo · 0d ago
-- [Recruiting Analytics Data Engineer ](https://job-boards.greenhouse.io/anthropic/jobs/5424111008) — **anthropic**  
-  New York City, NY; San Francisco, CA | New York City, NY | Seattle, WA; Seattle, WA · 0d ago
-- [Software Engineer, Code Quality](https://job-boards.greenhouse.io/doordashusa/jobs/8202736) — **doordashusa**  
-  San Francisco, CA; Seattle, WA; New York, NY; Los Angeles, CA · 0d ago
-- [Software Engineer - AI Platform](https://jobs.smartrecruiters.com/linkedin3/744000149684236) — **linkedin3**  
-  Mountain View, us · 0d ago
-- [Software Engineer - Systems and Infrastructure ](https://jobs.smartrecruiters.com/linkedin3/744000149665989) — **linkedin3**  
-  Mountain View, us · 0d ago
-- [Software Engineer - Embedded (RIS)](https://hpe.wd5.myworkdayjobs.com/en-US/acjobsite/job/Sunnyvale-California-United-States-of-America/Software-Engineer---Embedded--RIS-_1212127) — **hpe**  
-  Sunnyvale, California, United States of America · 0d ago
-- [Leader, Software Engineering](https://cisco.wd5.myworkdayjobs.com/en-US/cisco_careers/job/Milpitas-California-US/Leader--Software-Engineering_2023202) — **cisco**  
-  Milpitas, California, US · 0d ago
-- [Software Engineer - Embedded (RIS)](https://hpe.wd5.myworkdayjobs.com/en-US/Jobsathpe/job/Sunnyvale-California-United-States-of-America/Software-Engineer---Embedded--RIS-_1212127-3) — **hpe**  
-  Sunnyvale, California, United States of America · 0d ago
-- [Cloud Platform Engineer](https://kla.wd1.myworkdayjobs.com/en-US/search/job/Milpitas-CA/Cloud-Platform-Engineer_2639358) — **kla**  
-  Milpitas, CA · 0d ago
-- [Software Engineer, Behavior Validation](https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/Software-Engineer--Behavior-Validation_JR-202619416) — **generalmotors**  
-  Sunnyvale, California, United States of America · 0d ago
-- [Virtualization & Cloud Platform Engineer](https://altera.wd1.myworkdayjobs.com/en-US/altera/job/San-Jose-California-United-States/Virtualization---Cloud-Platform-Engineer_R03163) — **altera**  
-  San Jose, California, United States · 0d ago
-- [Software Engineer](https://bcbst.wd1.myworkdayjobs.com/en-US/External/job/USA-TN-Chattanooga-Remote/Software-Engineer_R-51271) — **bcbst**  
-  USA, TN, Chattanooga, Remote · 0d ago
+- [Infrastructure Engineer - Network](https://hdsupply.wd1.myworkdayjobs.com/en-US/External/job/Remote-FL-US/Senior-Network-Engineer_R26001822) — **hdsupply**  
+  Remote-FL-US · 0d ago
 
 ---
 
@@ -65,5 +32,80 @@
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
+- `workday/roberthalf.wd1.myworkdayjobs.com|roberthalf|protivitiexperiencedcareers` — HTTP 429
+- `workday/semtech.wd1.myworkdayjobs.com|semtech|SemtechCareers` — HTTP 429
+- `workday/baltimorecity.wd1.myworkdayjobs.com|baltimorecity|External` — HTTP 429
+- `workday/asu.wd1.myworkdayjobs.com|asu|ASUStaffCareers` — HTTP 429
+- `workday/sailpoint.wd1.myworkdayjobs.com|sailpoint|SailPoint` — HTTP 429
+- `workday/ncratleos.wd1.myworkdayjobs.com|ncratleos|ext_atleos_us` — HTTP 429
+- `workday/acelero.wd1.myworkdayjobs.com|acelero|acelerolearningcareers` — HTTP 429
+- `workday/draftkings.wd1.myworkdayjobs.com|draftkings|Employee_Referral_Portal` — HTTP 429
+- `workday/ryan.wd1.myworkdayjobs.com|ryan|RyanCareers` — HTTP 429
+- `workday/synechron.wd1.myworkdayjobs.com|synechron|SynechronCareers` — HTTP 429
+- `workday/elkay.wd1.myworkdayjobs.com|elkay|Elkay_External` — HTTP 429
+- `workday/nascar.wd1.myworkdayjobs.com|nascar|NASCAR` — HTTP 429
+- `workday/plantemoran.wd1.myworkdayjobs.com|plantemoran|pmexternalcareers` — HTTP 429
+- `workday/roberthalf.wd1.myworkdayjobs.com|roberthalf|ProtivitiNA` — HTTP 429
+- `workday/interstate.wd1.myworkdayjobs.com|interstate|interstatebatteries-careers` — HTTP 429
+- `workday/issgovernance.wd1.myworkdayjobs.com|issgovernance|isscareers` — HTTP 429
+- `workday/seic.wd1.myworkdayjobs.com|seic|SEI_Global_Services` — HTTP 429
+- `workday/signetjewelers.wd1.myworkdayjobs.com|signetjewelers|SignetCorporateCareers` — HTTP 429
+- `workday/hcpss.wd1.myworkdayjobs.com|hcpss|hcpss` — HTTP 429
+- `workday/coorstek.wd1.myworkdayjobs.com|coorstek|CoorsTekCareers` — HTTP 429
+- `workday/sonyglobal.wd1.myworkdayjobs.com|sonyglobal|SonyGlobalCareers` — HTTP 429
+- `workday/llbean.wd1.myworkdayjobs.com|llbean|llbean_careers` — HTTP 429
+- `workday/mccoys.wd1.myworkdayjobs.com|mccoys|mccoys_external_careers` — HTTP 429
+- `workday/strongtie.wd1.myworkdayjobs.com|strongtie|External` — HTTP 429
+- `workday/nb.wd1.myworkdayjobs.com|nb|NBCareers` — HTTP 429
+- `workday/nshe.wd1.myworkdayjobs.com|nshe|unr-external` — HTTP 429
+- `workday/draftkings.wd1.myworkdayjobs.com|draftkings|draftkings` — HTTP 429
+- `workday/gtweed.wd1.myworkdayjobs.com|gtweed|Careers` — HTTP 429
+- `workday/uofl.wd1.myworkdayjobs.com|uofl|UofLCareerSite` — HTTP 429
+- `workday/tamus.wd1.myworkdayjobs.com|tamus|pvamu_external` — HTTP 429
+- `workday/circle.wd1.myworkdayjobs.com|circle|Circle` — HTTP 429
+- `workday/priceline.wd1.myworkdayjobs.com|priceline|Priceline` — HTTP 429
+- `workday/waystar.wd1.myworkdayjobs.com|waystar|Waystar` — HTTP 429
+- `workday/lifefitness.wd1.myworkdayjobs.com|lifefitness|searchLFN` — HTTP 429
+- `workday/cambria.wd1.myworkdayjobs.com|cambria|cambria_careers` — HTTP 429
+- `workday/fau.wd1.myworkdayjobs.com|fau|FAU` — HTTP 429
+- `workday/chess.wd1.myworkdayjobs.com|chess|CNMJOBS` — HTTP 429
+- `workday/dukeenergy.wd1.myworkdayjobs.com|dukeenergy|search` — HTTP 429
+- `workday/tnsi.wd1.myworkdayjobs.com|tnsi|Search` — HTTP 429
+- `workday/stblaw.wd1.myworkdayjobs.com|stblaw|careers` — HTTP 429
+- `workday/hysteryale.wd1.myworkdayjobs.com|hysteryale|hyster-yalecareers` — HTTP 429
+- `workday/usbank.wd1.myworkdayjobs.com|usbank|Elavon_Careers` — HTTP 429
+- `workday/amfam.wd1.myworkdayjobs.com|amfam|Careers` — HTTP 429
+- `workday/peak6group.wd1.myworkdayjobs.com|peak6group|apexfintechsolutions` — HTTP 429
+- `workday/hhmi.wd1.myworkdayjobs.com|hhmi|external` — HTTP 429
+- `workday/wellsky.wd1.myworkdayjobs.com|wellsky|WellSkyCareers` — HTTP 429
+- `workday/wmeimg.wd1.myworkdayjobs.com|wmeimg|WME` — HTTP 429
+- `workday/marvell.wd1.myworkdayjobs.com|marvell|MarvellCareers2` — HTTP 429
+- `workday/nelnet.wd1.myworkdayjobs.com|nelnet|MyNelnet` — HTTP 429
+- `workday/walkerdunlop.wd1.myworkdayjobs.com|walkerdunlop|WD` — HTTP 429
+- `workday/evercommerce.wd1.myworkdayjobs.com|evercommerce|evercommerce_careers` — HTTP 429
+- `workday/pretiumenterpriseservices.wd1.myworkdayjobs.com|pretiumenterpriseservices|Selene` — HTTP 429
+- `workday/topcon.wd1.myworkdayjobs.com|topcon|TopconPositioningCareers` — HTTP 429
+- `workday/collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers` — HTTP 429
+- `workday/finra.wd1.myworkdayjobs.com|finra|FINRA` — HTTP 429
+- `workday/kla.wd1.myworkdayjobs.com|kla|UR` — HTTP 429
+- `workday/njm.wd1.myworkdayjobs.com|njm|njm` — HTTP 429
+- `workday/alegeus.wd1.myworkdayjobs.com|alegeus|Alegeus_External_Careers` — HTTP 429
+- `workday/athenahealth.wd1.myworkdayjobs.com|athenahealth|External` — HTTP 429
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
+- `workday/revantage.wd1.myworkdayjobs.com|revantage|Revantage` — HTTP 429
+- `workday/archwellessentials.wd1.myworkdayjobs.com|archwellessentials|modercareers` — HTTP 429
+- `workday/lplfinancial.wd1.myworkdayjobs.com|lplfinancial|university` — HTTP 429
+- `workday/massmutual.wd1.myworkdayjobs.com|massmutual|MMAscendCareers` — HTTP 429
+- `workday/semtech.wd1.myworkdayjobs.com|semtech|SemtechJobs` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|University_Talent_NCG` — HTTP 429
+- `workday/ibotta.wd1.myworkdayjobs.com|ibotta|Ibotta` — HTTP 429
+- `workday/aig.wd1.myworkdayjobs.com|aig|early_careers` — HTTP 429
+- `workday/gen.wd1.myworkdayjobs.com|gen|careers` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|University_CST` — HTTP 429
+- `workday/costar.wd1.myworkdayjobs.com|costar|confidential` — HTTP 429
 - `workday/dell.wd1.myworkdayjobs.com|dell|External` — HTTP 422
+- `workday/invesco.wd1.myworkdayjobs.com|invesco|IVZearlycareers` — HTTP 429
+- `workday/belk.wd1.myworkdayjobs.com|belk|careers-collegecampus` — HTTP 429
+- `workday/draftkings.wd1.myworkdayjobs.com|draftkings|Campus_Career_Portal` — HTTP 429
+- `workday/costar.wd1.myworkdayjobs.com|costar|Costar_Campus` — HTTP 429
+- `workday/exactsciences.wd1.myworkdayjobs.com|exactsciences|Exact_Sciences` — HTTP 429
