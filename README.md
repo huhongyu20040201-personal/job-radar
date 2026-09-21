@@ -218,6 +218,14 @@ relative-date parsing and pagination, and Markdown rendering.
   under "Fetch errors" in the digest. Retrying with backoff would help.
 - **Schedule timing isn't guaranteed.** See [Scheduling](#scheduling).
 
+## Contributing
+
+Pull requests are welcome. Every change to `main` goes through a PR and the
+maintainer's review. See [CONTRIBUTING.md](CONTRIBUTING.md) for the guidelines: a title
+that says what the PR does, comments that explain why, and one change per PR. If you
+only want different roles or locations for yourself, fork the repo and edit
+`config.yaml`.
+
 ## License
 
 [MIT](LICENSE)
