@@ -18,7 +18,15 @@ on:
   workflow_dispatch:        # can also be triggered manually from the Actions tab
 
 permissions:
-  contents: write           # needed to commit seen.json back
+  contents: write           # needed to push seen.json to the state branch
+
+# Never let two runs overlap: both would push to the state branch and one would lose.
+concurrency:
+  group: job-radar
+  cancel-in-progress: false
+
+env:
+  STATE_BRANCH: state
 
 jobs:
   scan:
@@ -34,28 +42,50 @@ jobs:
 
       - run: pip install pyyaml
 
+      # Run state lives on its own branch so main only holds code: forks start
+      # clean, and main's history isn't buried under daily bot commits.
+      # No state branch yet (e.g. a fresh fork) just means starting from scratch.
+      - name: Load state
+        run: |
+          if git fetch --depth=1 origin "$STATE_BRANCH"; then
+            git show FETCH_HEAD:seen.json > seen.json && echo "Loaded seen.json"
+          else
+            echo "No $STATE_BRANCH branch yet; starting with empty state"
+          fi
+
       - name: Scan job boards
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python jobradar.py
 
-      # seen.json must be committed back; otherwise every run starts from scratch
-      # and re-sends the same jobs every day.
-      - name: Commit state
+      # seen.json must be saved; otherwise every run starts from scratch and
+      # re-sends the same jobs every day.
+      - name: Save state
         run: |
           git config user.name  "job-radar"
           git config user.email "actions@github.com"
-          git add seen.json digest.md
+          mkdir -p "$RUNNER_TEMP/state"
+          mv seen.json digest.md "$RUNNER_TEMP/state/"
+          if git fetch origin "$STATE_BRANCH"; then
+            git switch --detach FETCH_HEAD
+          else
+            git switch --orphan "$STATE_BRANCH"
+          fi
+          cp "$RUNNER_TEMP/state/seen.json" "$RUNNER_TEMP/state/digest.md" .
+          git add -f seen.json digest.md
           git diff --staged --quiet && echo "No changes" && exit 0
           git commit -m "scan $(date -u +%F)"
-          git pull --rebase --autostash
-          git push
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
 
       # The digest also shows up in the run's Summary page
       - name: Show digest
         if: always()
-        run: cat digest.md >> $GITHUB_STEP_SUMMARY
+        run: |
+          for f in digest.md "$RUNNER_TEMP/state/digest.md"; do
+            [ -f "$f" ] && cat "$f" >> "$GITHUB_STEP_SUMMARY" && break
+          done
+          true
 
       # Speak up on failure. Otherwise a failed run is silent — you'd just think
       # "no new jobs today" and couldn't tell that from "it never ran".

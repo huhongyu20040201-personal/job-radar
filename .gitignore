@@ -11,6 +11,7 @@ run.log
 secrets.bat
 .env
 
-# Note: seen.json and digest.md are committed on purpose.
-# seen.json is the dedup state; without it every cloud run starts from scratch
-# and re-sends the same jobs.
+# Run state. The GitHub workflow keeps these on the `state` branch, not on main,
+# so forks start clean and main's history stays code-only.
+seen.json
+digest.md

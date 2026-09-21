@@ -19,15 +19,15 @@ It only finds jobs. Applying stays manual.
 | Matches in a 14-day window | ~100 |
 | Run time | ~3.5 minutes on a GitHub Actions runner |
 | Schedule | 09:06 and 11:36 Pacific, daily |
-| Delivery | Telegram, plus `digest.md` in the repo |
+| Delivery | Telegram, plus `digest.md` on the `state` branch |
 | Dependencies | Python 3.10+, `pyyaml` |
 
 ## How it works
 
 ```
 companies.yaml ──► fetch (12 threads) ──► filter ──► dedup against seen.json ──► digest.md + Telegram
-                   5 ATS adapters          title / location /       only jobs never           commit seen.json
-                                           experience / age         shown before              back to the repo
+                   5 ATS adapters          title / location /       only jobs never           push seen.json to
+                                           experience / age         shown before              the state branch
 ```
 
 1. **Fetch.** One adapter per ATS turns that vendor's JSON into a common `Job` record.
@@ -37,7 +37,8 @@ companies.yaml ──► fetch (12 threads) ──► filter ──► dedup aga
 3. **Dedup.** Every job has a stable key (`source:company:job_id`). `seen.json` records
    the keys already shown, so a job is reported once even if its timestamp is refreshed.
 4. **Deliver.** Write `digest.md`, send it to Telegram (split across messages because
-   of Telegram's 4,096-character limit), then commit `seen.json` back to the repo.
+   of Telegram's 4,096-character limit), then push `seen.json` and `digest.md` to the
+   `state` branch.
 
 ## Data sources
 
@@ -99,6 +100,19 @@ a burst of 100+ postings is spread over a few runs instead of being silently dro
 
 Entries older than `state.forget_after_days` (120) are pruned so the file doesn't grow forever.
 
+### Where state lives
+
+On GitHub, `seen.json` and `digest.md` live on a separate orphan branch, `state`,
+not on `main`. Each run reads `seen.json` from that branch before scanning and pushes
+the updated files back afterwards. This keeps `main` code-only, so:
+
+- a fork doesn't inherit someone else's dedup history (GitHub forks copy only `main`
+  by default), and
+- `main`'s history isn't buried under two bot commits a day.
+
+If the `state` branch doesn't exist yet, as in a fresh fork, the first run starts
+from empty state and creates it. Both files are gitignored on `main`.
+
 ## Scheduling
 
 The scan runs on GitHub Actions ([`.github/workflows/daily.yml`](.github/workflows/daily.yml)),
@@ -111,7 +125,8 @@ The workflow now:
 - schedules at off-peak minutes: `6 16` and `36 18` UTC, which is 09:06 and 11:36 PDT;
 - runs **twice**, so at least one run is likely done by noon. The second run also
   catches jobs posted that morning, and dedup means the two runs never repeat a job;
-- has `timeout-minutes: 45`;
+- has `timeout-minutes: 45`, and a `concurrency` group so two runs never push to
+  `state` at the same time;
 - sends a Telegram alert with the run URL if any step fails. Without that, a failed
   run looks exactly like a day with no new jobs.
 
@@ -126,14 +141,17 @@ earlier in local time; add 1 to each hour field to compensate.
    TELEGRAM_BOT_TOKEN="<token>" python jobradar.py --telegram-setup
    ```
    This prints your `chat_id`.
-3. **Push this repo to a private GitHub repository.** `seen.json` and `digest.md` show
-   which companies you're tracking.
+3. **Fork this repo** (or push a copy to your own), then edit `config.yaml` for the
+   roles and locations you want. In a public repo the `state` branch is public too, so
+   anyone can see which postings you've been sent. Use a private repo if that matters to you.
 4. **Add repository secrets** under Settings → Secrets and variables → Actions:
    `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`.
 5. **Allow the workflow to push.** Settings → Actions → General → Workflow permissions →
    **Read and write permissions**. Without this, `seen.json` never gets saved and the
    same jobs come back every day.
-6. **Test it:** Actions tab → `job-radar` → **Run workflow**.
+6. **Enable Actions in your fork.** GitHub disables scheduled workflows in forks until
+   you open the Actions tab and turn them on.
+7. **Test it:** Actions tab → `job-radar` → **Run workflow**.
 
 ## Running locally
 
@@ -147,6 +165,9 @@ python jobradar.py --dry-run    # run without writing seen.json
 
 To tune filters, combine `--all --dry-run`: edit `config.yaml`, rerun, and repeat until
 the output is free of noise.
+
+Local runs keep `seen.json` in the working directory. It's gitignored and separate
+from the `state` branch the GitHub workflow uses.
 
 [`run.bat`](run.bat) is an optional entry point for Windows Task Scheduler. It's not in
 use now. Running it alongside the GitHub workflow would give you two `seen.json` files
@@ -196,3 +217,7 @@ relative-date parsing and pagination, and Markdown rendering.
   429s, and GitHub's shared runner IPs make that more likely. Affected boards are listed
   under "Fetch errors" in the digest. Retrying with backoff would help.
 - **Schedule timing isn't guaranteed.** See [Scheduling](#scheduling).
+
+## License
+
+[MIT](LICENSE)
