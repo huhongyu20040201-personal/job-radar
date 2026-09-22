@@ -1,24 +1,20 @@
 # New jobs · 2026-09-22
 
-6 total.
+4 total.
 
-## ⭐ Explicitly new grad / entry level (3)
+## ⭐ Explicitly new grad / entry level (1)
 
-- [Associate and Mid-Level Software Engineers](https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/USA---Berkeley-MO/Associate-and-Mid-Level-Software-Engineers_JR2026520920-1) — **boeing**  
-  USA - Berkeley, MO · 0d ago
-- [Associate Systems Engineering Support Analyst](https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/USA---Berkeley-MO/Associate-Systems-Engineering-Support-Analyst_JR2026520609) — **boeing**  
-  USA - Berkeley, MO · 0d ago
-- [Associate and Mid-Level Software Engineers](https://boeing.wd1.myworkdayjobs.com/en-US/external_subsidiary/job/USA---Berkeley-MO/Associate-and-Mid-Level-Software-Engineers_JR2026520920) — **boeing**  
+- [Air Proprietary Tooling Engineer (Entry-Level or Associate)](https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/USA---Berkeley-MO/Air-Proprietary-Tooling-Engineer--Entry-Level-or-Associate-_JR2026524778) — **boeing**  
   USA - Berkeley, MO · 0d ago
 
 ## Other engineering roles (3)
 
-- [ML Infrastructure Engineer](https://jobs.ashbyhq.com/clera/88276d4c-0d4b-47d8-984c-0b315403d107) — **clera**  
-  San Mateo · 0d ago
-- [Cybersecurity Data Engineer](https://job-boards.greenhouse.io/9thwayinsignia/jobs/5426301008) — **9thwayinsignia**  
-  United States - Remote · 0d ago
-- [Data Engineer](https://jobs.lever.co/truetandem/3dc0ef33-80e3-4bc7-abb7-5d45b4cf8599) — **truetandem**  
-  Remote · 0d ago
+- [Full Stack AI/ML Developer - Digital Products (Remote)](https://globalhr.wd5.myworkdayjobs.com/en-US/rec_rtx_ext_gateway/job/US-CT-REMOTE/Full-Stack-AI-ML-Developer---Digital-Products--Remote-_01876514) — **globalhr**  
+  US-CT-REMOTE · 0d ago
+- [Software Engineer](https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/USA---Berkeley-MO/Software-Engineer_JR2026525023-1) — **boeing**  
+  USA - Berkeley, MO · 0d ago
+- [Software Engineer](https://boeing.wd1.myworkdayjobs.com/en-US/external_subsidiary/job/USA---Berkeley-MO/Software-Engineer_JR2026525023) — **boeing**  
+  USA - Berkeley, MO · 0d ago
 
 ---
 
