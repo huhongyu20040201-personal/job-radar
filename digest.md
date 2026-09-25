@@ -1,20 +1,23 @@
-# New jobs · 2026-09-24
+# New jobs · 2026-09-25
 
-4 total.
+7 total.
 
-## ⭐ Explicitly new grad / entry level (3)
+## Other engineering roles (7)
 
-- [Thermal Associate Engineer (Summer 2027)](https://job-boards.greenhouse.io/astranis/jobs/4704831006) — **astranis**  
+- [Full Stack Engineer](https://jobs.ashbyhq.com/clera/097bd39b-b268-456f-96dd-2bdcdd68a641) — **clera**  
+  San Mateo · 0d ago
+- [Software Engineer, Search Infrastructure](https://jobs.ashbyhq.com/openai/7caed1e8-c6f6-4569-9d45-2d7a7a56a025) — **openai**  
   San Francisco · 0d ago
-- [Thermal Associate Engineer (Winter 2027)](https://job-boards.greenhouse.io/astranis/jobs/4704829006) — **astranis**  
-  San Francisco · 0d ago
-- [Accelerated Computing Solutions Analyst - Early Career](https://marvell.wd1.myworkdayjobs.com/en-US/MarvellCareers2/job/Santa-Clara-CA/Accelerated-Computing-Solutions-Analyst---Early-Career_2601165) — **marvell**  
-  Santa Clara, CA · 0d ago
-
-## Other engineering roles (1)
-
-- [MTS, Systems Engineer](https://micron.wd1.myworkdayjobs.com/en-US/External/job/San-Jose-CA/MTS--Systems-Engineer_JR112602) — **micron**  
-  San Jose, CA · 0d ago
+- [Software Engineer, Horizon](https://jobs.ashbyhq.com/sierra/87f2a303-c2a1-484e-9e4b-efdcaafa440e) — **sierra**  
+  San Francisco, CA · 0d ago
+- [Software Engineer - Embedded](https://jobs.ashbyhq.com/skydio/d415cf2b-616c-459e-9c5f-58a1b2c4a1bb) — **skydio**  
+  San Mateo, California, United States · 0d ago
+- [ML Data Infrastructure Engineer](https://boards.greenhouse.io/applovin/jobs/4716524006?gh_jid=4716524006) — **applovin**  
+  Palo Alto, CA · 0d ago
+- [Azure Databricks Platform Engineer](https://fiserv.wd5.myworkdayjobs.com/en-US/ext/job/Berkeley-Heights-New-Jersey/Azure-Databricks-Platform-Engineer_R-10395474) — **fiserv**  
+  Berkeley Heights, New Jersey · 0d ago
+- [Full Stack Software Engineer (.NET / Angular / Azure)](https://csiweb.wd1.myworkdayjobs.com/en-US/CSI_Careers/job/Remote-USA/Full-Stack-Software-Engineer--NET---Angular---Azure-_R-100693) — **csiweb**  
+  Remote, USA · 0d ago
 
 ---
 
@@ -43,9 +46,13 @@
 - `workday/otis.wd5.myworkdayjobs.com|otis|rec_ext_gateway` — HTTP 422
 - `workday/lithia.wd5.myworkdayjobs.com|lithia|LithiaCareers` — HTTP 422
 - `workday/comcast.wd5.myworkdayjobs.com|comcast|Comcast_Careers` — HTTP 422
+- `workday/autodesk.wd1.myworkdayjobs.com|autodesk|Ext` — token may be wrong
+- `workday/wd1.myworkdaysite.com|avnet|External` — HTTP 502
+- `workday/avnet.wd1.myworkdayjobs.com|avnet|external` — HTTP 502
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
 - `workday/gapinc.wd1.myworkdayjobs.com|gapinc|gapconfidential` — token may be wrong
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
+- `workday/redbulltechnology.wd3.myworkdayjobs.com|redbulltechnology|RB_Racing` — HTTP 422
 - `workday/dell.wd1.myworkdayjobs.com|dell|External` — HTTP 422
