@@ -1,6 +1,28 @@
-# New jobs · 2026-10-01
+# New jobs · 2026-10-02
 
-Nothing new today.
+8 total.
+
+## ⭐ Explicitly new grad / entry level (3)
+
+- [Software Engineer, New Grad (2027)](https://jobs.ashbyhq.com/harvey/b0996df6-6b6e-42be-a4f9-0084536068f5) — **harvey**  
+  San Francisco · 0d ago
+- [Software Engineer I - Web Services](https://cincinnatichildrens.wd5.myworkdayjobs.com/en-US/careersatcincinnatichildrens/job/Remote/Software-Engineer-I---Web-Services_JR225073) — **cincinnatichildrens**  
+  Remote · 1d ago
+- [Early Careers New Grad - Leadership Development Program (REMOTE)](https://hcsc.wd1.myworkdayjobs.com/en-US/HCSC_External/job/National-Remote/Early-Careers-New-Grad---Leadership-Development-Program--REMOTE-_R0059519) — **hcsc**  
+  National Remote · 1d ago
+
+## Other engineering roles (5)
+
+- [Data Engineer](https://job-boards.greenhouse.io/baselayer/jobs/5442010008) — **baselayer**  
+  San Francisco, California · 0d ago
+- [Software Engineer, AI Infrastructure (Starshield)](https://boards.greenhouse.io/spacex/jobs/8861903002?gh_jid=8861903002) — **spacex**  
+  Palo Alto, CA · 0d ago
+- [District Systems Engineer](https://paloaltonetworks.wd5.myworkdayjobs.com/en-US/panwexternalcareers/job/Remote---USA---FL/District-Systems-Engineer_JR-023097-1) — **paloaltonetworks**  
+  Remote - USA - FL · 0d ago
+- [CX Machine Learning Engineer](https://cisco.wd5.myworkdayjobs.com/en-US/cisco_careers/job/San-Jose-California-US/CX-Machine-Learning-Engineer_2024550) — **cisco**  
+  San Jose, California, US · 0d ago
+- [Software Engineer (MANTL)](https://alkami.wd12.myworkdayjobs.com/en-US/alkami/job/US-Remote/Software-Engineer--MANTL-_JR-000780-1) — **alkami**  
+  US Remote · 0d ago
 
 ---
 
