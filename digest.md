@@ -1,23 +1,17 @@
-# New jobs · 2026-10-02
+# New jobs · 2026-10-03
 
-3 total.
+1 total.
 
-## ⭐ Explicitly new grad / entry level (2)
+## ⭐ Explicitly new grad / entry level (1)
 
-- [Business Development Associate (Early Career)](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Business-Development-Associate--Early-Career-_JR340479-1) — **salesforce**  
-  California - San Francisco · 0d ago
-- [Business Development Associate (Early Career)](https://salesforce.wd12.myworkdayjobs.com/en-US/Futureforce_NewGradRoles/job/California---San-Francisco/Business-Development-Associate--Early-Career-_JR340479) — **salesforce**  
-  California - San Francisco · 0d ago
-
-## Other engineering roles (1)
-
-- [Data Engineer (Remote, US)](https://allstate.wd5.myworkdayjobs.com/en-US/allstate_careers/job/USA---IL-Remote/Data-Engineer--Remote--US-_R35408-1) — **allstate**  
-  USA - IL (Remote) · 0d ago
+- [Software Engineer, Core Infrastructure - Moveworks (New Grad)](https://jobs.smartrecruiters.com/servicenow/744000153279380) — **servicenow**  
+  Mountain View, us · 0d ago
 
 ---
 
 **Fetch errors**
 
+- `ashby/amigo` — token may be wrong
 - `ashby/fundamentalresearchlabs` — token may be wrong
 - `ashby/goodship` — token may be wrong
 - `ashby/lynk` — token may be wrong
