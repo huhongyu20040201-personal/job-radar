@@ -1,15 +1,30 @@
-# New jobs · 2026-10-07
+# New jobs · 2026-10-08
 
-3 total.
+9 total.
 
-## Other engineering roles (3)
+## ⭐ Explicitly new grad / entry level (3)
 
-- [MTS 1, Software Engineer](https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/San-Jose/MTS-1--Software-Engineer_R0077136) — **ebay**  
-  San Jose · 0d ago
-- [MTS 1, Software Engineer](https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/San-Jose/MTS-1--Software-Engineer_R0077135) — **ebay**  
-  San Jose · 0d ago
-- [High Speed Data (HSD) Systems Engineer (Remote)](https://cableone.wd1.myworkdayjobs.com/en-US/Cable_One_External_Careers/job/Remote-USA/High-Speed-Data--HSD--Systems-Engineer--Remote-_R-106059) — **cableone**  
-  Remote USA · 0d ago
+- [Software Engineer I](https://job-boards.greenhouse.io/twitch/jobs/8879673002) — **twitch**  
+  San Francisco, CA · 0d ago
+- [Early Career Trainee- Field Service Engineer (Scotland, Manchester, Leeds, Birmingham, London and Bristol)](https://gehc.wd5.myworkdayjobs.com/en-US/GEHC_ExternalSite/job/Remote/Early-Career-Trainee--Field-Service-Engineer_R4047058-2) — **gehc**  
+  Remote · 0d ago
+- [Engineer I, Systems Software Engineering](https://myhrabc.wd5.myworkdayjobs.com/en-US/Global/job/Remote-Pennsylvania/Engineer-I--Systems-Software-Engineering_R2614401) — **myhrabc**  
+  Remote, Pennsylvania · 0d ago
+
+## Other engineering roles (6)
+
+- [Founding Engineer (Full Stack)](https://jobs.ashbyhq.com/clera/d4b1cb8d-e85a-4126-a248-6f4e0420eb9d) — **clera**  
+  San Francisco · 0d ago
+- [Software Engineer](https://jobs.ashbyhq.com/clera/e5b02186-e4b2-46ae-9880-8312ac1e92c9) — **clera**  
+  San Francisco · 0d ago
+- [Machine Learning Engineer ](https://jobs.ashbyhq.com/handshake/42aca7f5-2f58-40ef-a6ce-19027d32a12f) — **handshake**  
+  San Francisco, CA · 0d ago
+- [Service Software Developer](https://jobs.smartrecruiters.com/intuitive/744000154483468) — **intuitive**  
+  Santa Clara, us · 0d ago
+- [Software Engineer](https://cisco.wd5.myworkdayjobs.com/en-US/cisco_careers/job/Milpitas-California-US/Software-Engineer_2024896) — **cisco**  
+  Milpitas, California, US · 0d ago
+- [IBM BAW Software Engineer](https://bcbst.wd1.myworkdayjobs.com/en-US/External/job/USA-TN-Chattanooga-Remote/IBM-BAW-Software-Engineer_R-51477) — **bcbst**  
+  USA, TN, Chattanooga, Remote · 0d ago
 
 ---
 
