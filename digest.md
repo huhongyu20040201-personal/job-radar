@@ -1,38 +1,13 @@
-# New jobs · 2026-10-12
+# New jobs · 2026-10-13
 
-13 total.
+2 total.
 
-## ⭐ Explicitly new grad / entry level (2)
+## Other engineering roles (2)
 
-- [Structural Engineering New Graduate | San Francisco, CA](https://wd1.myworkdaysite.com/en-US/Imeg_Careers/job/San-Francisco-CA/Structural-Engineering-New-Graduate---San-Francisco--CA_R-16731) — **imeg**  
-  San Francisco, CA · 0d ago
-- [Associate Software Engineer](https://campaignmonitor.wd5.myworkdayjobs.com/en-US/marigold/job/Remote-United-States/Associate-Software-Engineer_R2487) — **campaignmonitor**  
-  Remote, United States · 0d ago
-
-## Other engineering roles (11)
-
-- [Robotics Software Engineer ](https://jobs.ashbyhq.com/aureliussystems/9fbd7250-d60d-4604-a1a5-81cacdc888ac) — **aureliussystems**  
-  San Francisco · 0d ago
-- [Distributed Systems Engineer](https://jobs.ashbyhq.com/revel/d5850db2-139c-4ca9-bb2a-7dbe745ecbc0) — **revel**  
-  North America | Los Angeles | San Francisco · 0d ago
-- [Software Engineer, Agents](https://jobs.ashbyhq.com/runpod/f87407ae-1952-464e-9faf-3da3644bcbe4) — **runpod**  
-  Remote - USA · 0d ago
-- [Software Engineer, Agentic Runtime](https://job-boards.greenhouse.io/gleanwork/jobs/4742959005) — **gleanwork**  
-  Mountain View, CA · 0d ago
-- [Systems Engineer - Compute](https://boards.greenhouse.io/neuralink/jobs/8027961003?gh_jid=8027961003) — **neuralink**  
-  Austin, Texas, United States; South San Francisco, California, United States · 0d ago
-- [Machine Learning Engineer - 3D Sensor Simulation](https://jobs.lever.co/zoox/2347453a-f11f-4dc2-ad14-572bc1f6247f) — **zoox**  
-  Foster City, CA · 0d ago
-- [Software Engineer - Applications ](https://jobs.smartrecruiters.com/linkedin3/744000155095579) — **linkedin3**  
-  Mountain View, us · 0d ago
-- [AI/ML Engineer](https://abbott.wd5.myworkdayjobs.com/en-US/abbottcareers/job/United-States---California---Alameda/AI-ML-Engineer_31164306-1) — **abbott**  
-  United States - California - Alameda · 0d ago
-- [Software Engineering LMTS](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Software-Engineering-LMTS_JR363489) — **salesforce**  
-  California - San Francisco · 0d ago
-- [Software Engineering LMTS - Data (Remote)](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Software-Engineering-LMTS---Data--Remote-_JR363374) — **salesforce**  
-  California - San Francisco · 0d ago
-- [AI/ML Engineer](https://abbott.wd5.myworkdayjobs.com/en-US/abbottcareers2/job/United-States---California---Alameda/AI-ML-Engineer_31164306) — **abbott**  
-  United States - California - Alameda · 0d ago
+- [Software Engineer – Gap Year](https://jobs.ashbyhq.com/netic/e645059a-a2e8-4cfd-84e8-085d92da6e62) — **netic**  
+  SF or NYC · 0d ago
+- [Systems Engineer Level 4](https://ngc.wd1.myworkdayjobs.com/en-US/Northrop_Grumman_External_Site/job/United-States-California-Sunnyvale/Systems-Engineer-Level-4_R10255688) — **ngc**  
+  United States-California-Sunnyvale · 0d ago
 
 ---
 
@@ -72,6 +47,26 @@
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
+- `workday/gtweed.wd1.myworkdayjobs.com|gtweed|Careers` — HTTP 429
+- `workday/uofl.wd1.myworkdayjobs.com|uofl|UofLCareerSite` — HTTP 429
+- `workday/tamus.wd1.myworkdayjobs.com|tamus|pvamu_external` — HTTP 429
+- `workday/waystar.wd1.myworkdayjobs.com|waystar|Waystar` — HTTP 429
+- `workday/cambria.wd1.myworkdayjobs.com|cambria|cambria_careers` — HTTP 429
+- `workday/massmutual.wd1.myworkdayjobs.com|massmutual|MMCareers` — HTTP 429
+- `workday/wmg.wd1.myworkdayjobs.com|wmg|WMGUS` — HTTP 429
+- `workday/kith.wd1.myworkdayjobs.com|kith|kith_external_careers` — HTTP 429
+- `workday/swbc.wd1.myworkdayjobs.com|swbc|swbccareers` — HTTP 429
+- `workday/poet.wd1.myworkdayjobs.com|poet|POET` — HTTP 429
+- `workday/clarioclinical.wd1.myworkdayjobs.com|clarioclinical|clarioclinical_careers` — HTTP 429
+- `workday/ameren.wd1.myworkdayjobs.com|ameren|External` — HTTP 429
+- `workday/dow.wd1.myworkdayjobs.com|dow|ExternalCareers` — HTTP 429
+- `workday/orthoclinical.wd1.myworkdayjobs.com|orthoclinical|Search` — HTTP 429
+- `workday/unum.wd1.myworkdayjobs.com|unum|external` — HTTP 429
+- `workday/momentive.wd1.myworkdayjobs.com|momentive|MC` — HTTP 429
+- `workday/axcelis.wd1.myworkdayjobs.com|axcelis|axcelis` — HTTP 429
+- `workday/maricopa.wd1.myworkdayjobs.com|maricopa|MC_External` — HTTP 429
+- `workday/dallascollege.wd1.myworkdayjobs.com|dallascollege|Dallas_College_Careers` — HTTP 429
+- `workday/cubic.wd1.myworkdayjobs.com|cubic|cubic_USA_careers` — HTTP 429
 - `workday/gapinc.wd1.myworkdayjobs.com|gapinc|gapconfidential` — token may be wrong
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
 - `workday/redbulltechnology.wd3.myworkdayjobs.com|redbulltechnology|RB_Racing` — HTTP 422
