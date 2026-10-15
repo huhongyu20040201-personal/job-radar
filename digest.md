@@ -1,28 +1,16 @@
 # New jobs · 2026-10-15
 
-8 total.
+2 total.
 
-## ⭐ Explicitly new grad / entry level (2)
+## ⭐ Explicitly new grad / entry level (1)
 
-- [Machine Learning Engineer, New Grad - Quora (Remote)](https://jobs.ashbyhq.com/quora/40659fe7-545e-4b08-b6d7-2567b18b9ed3) — **quora**  
-  Remote - Multiple Locations · 0d ago
-- [Product Design Engineer (Early Career)](https://jobs.ashbyhq.com/skydio/ba62805c-ebe7-4b99-85af-f58c807b4dd1) — **skydio**  
-  San Mateo, California, United States · 0d ago
+- [Software Engineer I, Fullstack (Search)](https://job-boards.greenhouse.io/affirm/jobs/8017340003) — **affirm**  
+  Remote US · 0d ago
 
-## Other engineering roles (6)
+## Other engineering roles (1)
 
-- [Software Engineer, Mid-Level](https://jobs.ashbyhq.com/clera/9b57f80b-33b5-4082-ac57-9f10920e4eca) — **clera**  
-  San Francisco · 0d ago
-- [Client Platform Engineer](https://jobs.ashbyhq.com/openai/329fe50f-7701-4f07-982d-a4e10cbec236) — **openai**  
-  San Francisco · 0d ago
-- [Modernization Software Developer](https://caci.wd1.myworkdayjobs.com/en-US/external/job/Remote-Any-State/Modernization-Software-Developer_331054) — **caci**  
-  Remote (Any State) · 0d ago
-- [Software Engineering SMTS - Brain Team (REMOTE)](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Software-Engineering-SMTS---Brain-Team--REMOTE-_JR363395) — **salesforce**  
+- [Software Engineering - MTS, Trust Intelligence Platform](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Software-Engineering---MTS--Trust-Intelligence-Platform_JR363027) — **salesforce**  
   California - San Francisco · 0d ago
-- [Software Engineering SMTS / LMTS - AI Core (REMOTE)](https://salesforce.wd12.myworkdayjobs.com/en-US/External_Career_Site/job/California---San-Francisco/Software-Engineering-LMTS---AI-Core--REMOTE-_JR363384) — **salesforce**  
-  California - San Francisco · 0d ago
-- [Automotive Embedded Software Engineer](https://job-boards.greenhouse.io/altentechnologyusa/jobs/5259789007) — **altentechnologyusa**  
-  Remote · 8d ago
 
 ---
 
@@ -62,40 +50,46 @@
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
-- `workday/synechron.wd1.myworkdayjobs.com|synechron|SynechronCareers` — HTTP 429
+- `workday/newschool.wd1.myworkdayjobs.com|newschool|external` — HTTP 429
+- `workday/ncr.wd1.myworkdayjobs.com|ncr|ext_us` — HTTP 429
+- `workday/foxfactory.wd1.myworkdayjobs.com|foxfactory|FOX` — HTTP 429
+- `workday/oneok.wd1.myworkdayjobs.com|oneok|ONEOK` — HTTP 429
+- `workday/blackstone.wd1.myworkdayjobs.com|blackstone|bx_external_site` — HTTP 429
+- `workday/roberthalf.wd1.myworkdayjobs.com|roberthalf|protivitiexperiencedcareers` — HTTP 429
+- `workday/semtech.wd1.myworkdayjobs.com|semtech|SemtechCareers` — HTTP 429
+- `workday/aes.wd1.myworkdayjobs.com|aes|AES_US` — HTTP 429
+- `workday/plantemoran.wd1.myworkdayjobs.com|plantemoran|pmexternalcareers` — HTTP 429
 - `workday/interstate.wd1.myworkdayjobs.com|interstate|interstatebatteries-careers` — HTTP 429
-- `workday/uva.wd1.myworkdayjobs.com|uva|uvastudentjobs` — HTTP 429
-- `workday/seic.wd1.myworkdayjobs.com|seic|SEI_Global_Services` — HTTP 429
-- `workday/signetjewelers.wd1.myworkdayjobs.com|signetjewelers|SignetCorporateCareers` — HTTP 429
+- `workday/issgovernance.wd1.myworkdayjobs.com|issgovernance|isscareers` — HTTP 429
+- `workday/mjhlifesciences.wd1.myworkdayjobs.com|mjhlifesciences|Careers` — HTTP 429
+- `workday/gtweed.wd1.myworkdayjobs.com|gtweed|Careers` — HTTP 429
+- `workday/uofl.wd1.myworkdayjobs.com|uofl|UofLCareerSite` — HTTP 429
 - `workday/tamus.wd1.myworkdayjobs.com|tamus|pvamu_external` — HTTP 429
-- `workday/priceline.wd1.myworkdayjobs.com|priceline|Priceline` — HTTP 429
+- `workday/circle.wd1.myworkdayjobs.com|circle|Circle` — HTTP 429
 - `workday/waystar.wd1.myworkdayjobs.com|waystar|Waystar` — HTTP 429
-- `workday/lifefitness.wd1.myworkdayjobs.com|lifefitness|searchLFN` — HTTP 429
-- `workday/clarioclinical.wd1.myworkdayjobs.com|clarioclinical|clarioclinical_careers` — HTTP 429
-- `workday/orthoclinical.wd1.myworkdayjobs.com|orthoclinical|Search` — HTTP 429
-- `workday/tdwilliamson.wd1.myworkdayjobs.com|tdwilliamson|TDWCareers` — HTTP 429
-- `workday/cubic.wd1.myworkdayjobs.com|cubic|cubic_USA_careers` — HTTP 429
-- `workday/alliantenergy.wd1.myworkdayjobs.com|alliantenergy|alliant` — HTTP 429
+- `workday/swbc.wd1.myworkdayjobs.com|swbc|swbccareers` — HTTP 429
+- `workday/ameren.wd1.myworkdayjobs.com|ameren|External` — HTTP 429
 - `workday/amfam.wd1.myworkdayjobs.com|amfam|Careers` — HTTP 429
-- `workday/evolent.wd1.myworkdayjobs.com|evolent|External` — HTTP 429
-- `workday/peak6group.wd1.myworkdayjobs.com|peak6group|apexfintechsolutions` — HTTP 429
+- `workday/silabs.wd1.myworkdayjobs.com|silabs|SiliconlabsCareers` — HTTP 429
+- `workday/fanniemae.wd1.myworkdayjobs.com|fanniemae|FannieMaeCareers` — HTTP 429
+- `workday/hhmi.wd1.myworkdayjobs.com|hhmi|external` — HTTP 429
 - `workday/wellsky.wd1.myworkdayjobs.com|wellsky|WellSkyCareers` — HTTP 429
 - `workday/wmeimg.wd1.myworkdayjobs.com|wmeimg|WME` — HTTP 429
-- `workday/marvell.wd1.myworkdayjobs.com|marvell|MarvellCareers2` — HTTP 429
-- `workday/nelnet.wd1.myworkdayjobs.com|nelnet|MyNelnet` — HTTP 429
 - `workday/walkerdunlop.wd1.myworkdayjobs.com|walkerdunlop|WD` — HTTP 429
 - `workday/evercommerce.wd1.myworkdayjobs.com|evercommerce|evercommerce_careers` — HTTP 429
 - `workday/pretiumenterpriseservices.wd1.myworkdayjobs.com|pretiumenterpriseservices|Selene` — HTTP 429
 - `workday/topcon.wd1.myworkdayjobs.com|topcon|TopconPositioningCareers` — HTTP 429
-- `workday/athenahealth.wd1.myworkdayjobs.com|athenahealth|External` — HTTP 429
-- `workday/boeing.wd1.myworkdayjobs.com|boeing|INTERN` — HTTP 429
-- `workday/sentryinsurance.wd1.myworkdayjobs.com|sentryinsurance|SentryCareers` — HTTP 429
+- `workday/collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers` — HTTP 429
+- `workday/kla.wd1.myworkdayjobs.com|kla|UR` — HTTP 429
+- `workday/swa.wd1.myworkdayjobs.com|swa|external` — HTTP 429
+- `workday/jmfamily.wd1.myworkdayjobs.com|jmfamily|jmfamily_external` — HTTP 429
+- `workday/barrywehmiller.wd1.myworkdayjobs.com|barrywehmiller|BWConfidential` — HTTP 429
+- `workday/publicpartnerships.wd1.myworkdayjobs.com|publicpartnerships|ppl` — HTTP 429
+- `workday/baincapital.wd1.myworkdayjobs.com|baincapital|External_Public` — HTTP 429
+- `workday/oldrepublic.wd1.myworkdayjobs.com|oldrepublic|oldrepublictitle` — HTTP 429
 - `workday/gapinc.wd1.myworkdayjobs.com|gapinc|gapconfidential` — token may be wrong
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
-- `workday/maritz.wd1.myworkdayjobs.com|maritz|Maritz` — HTTP 429
-- `workday/maricopa.wd1.myworkdayjobs.com|maricopa|jb_external` — HTTP 429
-- `workday/healthresearch.wd1.myworkdayjobs.com|healthresearch|hri_careers` — HTTP 429
-- `workday/cadence.wd1.myworkdayjobs.com|cadence|University_Talent` — HTTP 429
+- `workday/revantage.wd1.myworkdayjobs.com|revantage|Revantage` — HTTP 429
 - `workday/taxwell.wd1.myworkdayjobs.com|taxwell|taxwellcareers` — HTTP 429
 - `workday/rakuten.wd1.myworkdayjobs.com|rakuten|RakutenAmericas` — HTTP 429
 - `workday/lplfinancial.wd1.myworkdayjobs.com|lplfinancial|university` — HTTP 429
@@ -106,5 +100,7 @@
 - `workday/cadence.wd1.myworkdayjobs.com|cadence|University_Talent_NCG` — HTTP 429
 - `workday/ibotta.wd1.myworkdayjobs.com|ibotta|Ibotta` — HTTP 429
 - `workday/aig.wd1.myworkdayjobs.com|aig|early_careers` — HTTP 429
+- `workday/gen.wd1.myworkdayjobs.com|gen|careers` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|University_CST` — HTTP 429
 - `workday/redbulltechnology.wd3.myworkdayjobs.com|redbulltechnology|RB_Racing` — HTTP 422
 - `workday/dell.wd1.myworkdayjobs.com|dell|External` — HTTP 422
