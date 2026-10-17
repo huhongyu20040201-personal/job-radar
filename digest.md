@@ -1,13 +1,6 @@
 # New jobs · 2026-10-17
 
-2 total.
-
-## Other engineering roles (2)
-
-- [Frontend Software Engineer, Data Platform](https://jobs.ashbyhq.com/revel/eb632eff-b2de-4938-a9ea-dbadc8a25e86) — **revel**  
-  North America | Los Angeles | San Francisco | Seattle · 0d ago
-- [Machine Learning Engineer, GeForce G-Assist](https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-CA-Santa-Clara/Machine-Learning-Engineer--GeForce-G-Assist_JR2027676-1) — **nvidia**  
-  US, CA, Santa Clara · 1d ago
+Nothing new today.
 
 ---
 
