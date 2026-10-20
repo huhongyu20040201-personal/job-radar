@@ -1,22 +1,23 @@
-# New jobs · 2026-10-19
+# New jobs · 2026-10-20
 
-5 total.
+7 total.
 
-## ⭐ Explicitly new grad / entry level (2)
+## Other engineering roles (7)
 
-- [Associate Flight Test Data Processing Software Engineer](https://boeing.wd1.myworkdayjobs.com/en-US/EXTERNAL_CAREERS/job/USA---Berkeley-MO/Associate-Flight-Test-Data-Processing-Software-Engineer_JR2026524420-1) — **boeing**  
-  USA - Berkeley, MO · 0d ago
-- [Associate Flight Test Data Processing Software Engineer](https://boeing.wd1.myworkdayjobs.com/en-US/external_subsidiary/job/USA---Berkeley-MO/Associate-Flight-Test-Data-Processing-Software-Engineer_JR2026524420) — **boeing**  
-  USA - Berkeley, MO · 0d ago
-
-## Other engineering roles (3)
-
-- [Chip Simulation Software Engineer](https://jobs.ashbyhq.com/etched/29b303b2-f1a5-4799-a0b2-e86e28289a9b) — **etched**  
+- [Software Engineer](https://jobs.ashbyhq.com/clera/05350485-5024-4d00-8398-99df43359158) — **clera**  
+  San Francisco · 0d ago
+- [Software Engineer, TPU Compilers](https://jobs.ashbyhq.com/openai/0a6f6736-8743-4528-b17c-4e1f4f8ea45c) — **openai**  
+  San Francisco · 0d ago
+- [Customer Service Systems Engineer, Government](https://jobs.ashbyhq.com/openai/068c4492-1e07-4d51-9ab0-ec2727b7fc51) — **openai**  
+  San Francisco · 0d ago
+- [Software Engineer](https://jobs.lever.co/xsolla/c2cf774d-e285-480b-96a3-3f133a243eff) — **xsolla**  
+  Remote USA · 0d ago
+- [MTS 2, Software Engineer](https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/San-Jose/MTS-2--Software-Engineer_R0077231) — **ebay**  
   San Jose · 0d ago
-- [Software Engineer, Bachelors Degree, New College Grad (Santa Clara)](https://amat.wd1.myworkdayjobs.com/en-US/External/job/Santa-ClaraCA/Software-Engineer--Bachelors-Degree--New-College-Grad--Santa-Clara-_R2630683) — **amat**  
-  Santa Clara,CA · 0d ago
-- [Systems Engineer](https://amat.wd1.myworkdayjobs.com/en-US/External/job/Santa-ClaraCA/Systems-Engineer_R2631264) — **amat**  
-  Santa Clara,CA · 0d ago
+- [MTS 1, Software Engineer](https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/San-Jose/MTS-1--Software-Engineer_R0077230) — **ebay**  
+  San Jose · 0d ago
+- [Software Engineer 3](https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/San-Jose/Software-Engineer-3_R0077229) — **ebay**  
+  San Jose · 0d ago
 
 ---
 
@@ -45,39 +46,24 @@
 - `greenhouse/rdccareers` — token may be wrong
 - `greenhouse/scoutai` — token may be wrong
 - `greenhouse/temporaltechnologies` — token may be wrong
+- `greenhouse/threatlocker` — token may be wrong
 - `greenhouse/underdogfantasy` — token may be wrong
 - `lever/autoroboto` — token may be wrong
 - `lever/inductiveautomation` — token may be wrong
 - `lever/saronic` — token may be wrong
 - `lever/sensortower` — token may be wrong
+- `workday/accenture.wd103.myworkdayjobs.com|accenture|AccentureCareers` — HTTP 429
 - `workday/ssmh.wd5.myworkdayjobs.com|ssmh|ssmhealth` — HTTP 422
+- `workday/salesforce.wd12.myworkdayjobs.com|salesforce|External_Career_Site` — HTTP 429
 - `workday/otis.wd5.myworkdayjobs.com|otis|rec_ext_gateway` — HTTP 422
 - `workday/lithia.wd5.myworkdayjobs.com|lithia|LithiaCareers` — HTTP 422
 - `workday/comcast.wd5.myworkdayjobs.com|comcast|Comcast_Careers` — HTTP 422
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
-- `workday/nelnet.wd1.myworkdayjobs.com|nelnet|MyNelnet` — HTTP 429
-- `workday/topcon.wd1.myworkdayjobs.com|topcon|TopconPositioningCareers` — HTTP 429
-- `workday/collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers` — HTTP 429
-- `workday/finra.wd1.myworkdayjobs.com|finra|FINRA` — HTTP 429
-- `workday/kla.wd1.myworkdayjobs.com|kla|UR` — HTTP 429
-- `workday/njm.wd1.myworkdayjobs.com|njm|njm` — HTTP 429
-- `workday/alegeus.wd1.myworkdayjobs.com|alegeus|Alegeus_External_Careers` — HTTP 429
-- `workday/athenahealth.wd1.myworkdayjobs.com|athenahealth|External` — HTTP 429
-- `workday/roberthalf.wd1.myworkdayjobs.com|roberthalf|roberthalfcareers` — HTTP 429
-- `workday/roguefitness.wd1.myworkdayjobs.com|roguefitness|RogueFitness_External_Careers` — HTTP 429
-- `workday/edftrading.wd1.myworkdayjobs.com|edftrading|EDFTrading` — HTTP 429
-- `workday/barrywehmiller.wd1.myworkdayjobs.com|barrywehmiller|BWConfidential` — HTTP 429
-- `workday/mastercard.wd1.myworkdayjobs.com|mastercard|Campus` — HTTP 429
-- `workday/baincapital.wd1.myworkdayjobs.com|baincapital|External_Public` — HTTP 429
-- `workday/oldrepublic.wd1.myworkdayjobs.com|oldrepublic|oldrepublictitle` — HTTP 429
-- `workday/bcbst.wd1.myworkdayjobs.com|bcbst|External` — HTTP 429
-- `workday/cpsi.wd1.myworkdayjobs.com|cpsi|CPSI` — HTTP 429
+- `workday/salesforce.wd12.myworkdayjobs.com|salesforce|Futureforce_NewGradRoles` — HTTP 429
 - `workday/gapinc.wd1.myworkdayjobs.com|gapinc|gapconfidential` — token may be wrong
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
-- `workday/cadence.wd1.myworkdayjobs.com|cadence|University_Talent_NCG` — HTTP 429
-- `workday/rockwellautomation.wd1.myworkdayjobs.com|rockwellautomation|External-Rockwell-Automation-Early-Careers` — HTTP 429
+- `workday/salesforce.wd12.myworkdayjobs.com|salesforce|Slack` — HTTP 429
 - `workday/redbulltechnology.wd3.myworkdayjobs.com|redbulltechnology|RB_Racing` — HTTP 422
-- `workday/dell.wd1.myworkdayjobs.com|dell|External` — HTTP 429
-- `workday/belk.wd1.myworkdayjobs.com|belk|careers-collegecampus` — HTTP 429
+- `workday/dell.wd1.myworkdayjobs.com|dell|External` — HTTP 422
