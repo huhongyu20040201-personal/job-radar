@@ -1,20 +1,30 @@
-# New jobs · 2026-10-20
+# New jobs · 2026-10-21
 
-4 total.
+9 total.
 
-## ⭐ Explicitly new grad / entry level (1)
+## ⭐ Explicitly new grad / entry level (2)
 
-- [New Grad- Project Coordinator](https://symbotic.wd504.myworkdayjobs.com/en-US/Symbotic/job/USA-Remote--Travel/New-Grad--Project-Coordinator_R8277) — **symbotic**  
-  USA Remote & Travel · 0d ago
+- [AI Product Engineer, 2027 New Grad](https://jobs.ashbyhq.com/brainco/c1788246-305f-4e4f-8b03-8444c76a466e) — **brainco**  
+  San Francisco Bay Area · 0d ago
+- [Full Stack Software Engineer, New Grad - Quora (Remote)](https://jobs.ashbyhq.com/quora/5494e6a1-a973-46af-b9f3-57208eb91b52) — **quora**  
+  Remote - Multiple Locations · 0d ago
 
-## Other engineering roles (3)
+## Other engineering roles (7)
 
-- [Full-Stack Software Engineer](https://jobs.smartrecruiters.com/intuitive/744000156658099) — **intuitive**  
-  Sunnyvale, us · 0d ago
-- [Full-Stack Software Engineer](https://jobs.smartrecruiters.com/intuitive/744000156656129) — **intuitive**  
-  Sunnyvale, us · 0d ago
-- [Software Engineer - Federal](https://jobs.smartrecruiters.com/servicenow/744000156619374) — **servicenow**  
-  Santa Clara, us · 0d ago
+- [Full-Stack Software Engineer, Design](https://jobs.ashbyhq.com/clera/981f8150-4e48-4261-bfdf-5b8516f55d42) — **clera**  
+  San Francisco · 0d ago
+- [Platform Engineer, Biotech](https://jobs.ashbyhq.com/clera/121621c4-34cf-442d-9d97-cd36e650f0a9) — **clera**  
+  San Francisco · 0d ago
+- [Command Center Solutions Services (CCSS) Engineering Organization - Software Engineer](https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/job/Massachusetts-Remote-Work/Command-Center-Solutions-Services--CCSS--Engineering-Organization---Software-Engineer_R69567) — **motorolasolutions**  
+  Massachusetts Remote Work, More... · 0d ago
+- [Backend Developer](https://fiserv.wd5.myworkdayjobs.com/en-US/ext/job/Berkeley-Heights-New-Jersey/Backend-Developer_R-10404862) — **fiserv**  
+  Berkeley Heights, New Jersey · 0d ago
+- [MTS 2, Software Engineer](https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/San-Jose/MTS-2--Software-Engineer_R0077252) — **ebay**  
+  San Jose · 0d ago
+- [Software Engineer 2](https://humana.wd5.myworkdayjobs.com/en-US/humana_external_career_site/job/Remote-Nationwide/Software-Engineer-2_R-432908) — **humana**  
+  Remote Nationwide · 0d ago
+- [Machine Learning Engineer](https://jobs.smartrecruiters.com/servicenow/744000156637254) — **servicenow**  
+  Santa Clara, us · 1d ago
 
 ---
 
@@ -54,6 +64,7 @@
 - `workday/otis.wd5.myworkdayjobs.com|otis|rec_ext_gateway` — HTTP 422
 - `workday/lithia.wd5.myworkdayjobs.com|lithia|LithiaCareers` — HTTP 422
 - `workday/comcast.wd5.myworkdayjobs.com|comcast|Comcast_Careers` — HTTP 422
+- `workday/allstate.wd5.myworkdayjobs.com|allstate|allstate_careers` — The read operation timed out
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
