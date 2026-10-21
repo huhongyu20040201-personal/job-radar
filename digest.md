@@ -1,30 +1,16 @@
 # New jobs · 2026-10-21
 
-9 total.
+2 total.
 
-## ⭐ Explicitly new grad / entry level (2)
+## ⭐ Explicitly new grad / entry level (1)
 
-- [AI Product Engineer, 2027 New Grad](https://jobs.ashbyhq.com/brainco/c1788246-305f-4e4f-8b03-8444c76a466e) — **brainco**  
-  San Francisco Bay Area · 0d ago
-- [Full Stack Software Engineer, New Grad - Quora (Remote)](https://jobs.ashbyhq.com/quora/5494e6a1-a973-46af-b9f3-57208eb91b52) — **quora**  
-  Remote - Multiple Locations · 0d ago
+- [Analyst, Early Career (Full Stack)](https://job-boards.greenhouse.io/affirm/jobs/8039471003) — **affirm**  
+  New York, New York, United States; San Francisco, California, United States · 0d ago
 
-## Other engineering roles (7)
+## Other engineering roles (1)
 
-- [Full-Stack Software Engineer, Design](https://jobs.ashbyhq.com/clera/981f8150-4e48-4261-bfdf-5b8516f55d42) — **clera**  
-  San Francisco · 0d ago
-- [Platform Engineer, Biotech](https://jobs.ashbyhq.com/clera/121621c4-34cf-442d-9d97-cd36e650f0a9) — **clera**  
-  San Francisco · 0d ago
-- [Command Center Solutions Services (CCSS) Engineering Organization - Software Engineer](https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/job/Massachusetts-Remote-Work/Command-Center-Solutions-Services--CCSS--Engineering-Organization---Software-Engineer_R69567) — **motorolasolutions**  
-  Massachusetts Remote Work, More... · 0d ago
-- [Backend Developer](https://fiserv.wd5.myworkdayjobs.com/en-US/ext/job/Berkeley-Heights-New-Jersey/Backend-Developer_R-10404862) — **fiserv**  
-  Berkeley Heights, New Jersey · 0d ago
-- [MTS 2, Software Engineer](https://ebay.wd5.myworkdayjobs.com/en-US/apply/job/San-Jose/MTS-2--Software-Engineer_R0077252) — **ebay**  
-  San Jose · 0d ago
-- [Software Engineer 2](https://humana.wd5.myworkdayjobs.com/en-US/humana_external_career_site/job/Remote-Nationwide/Software-Engineer-2_R-432908) — **humana**  
-  Remote Nationwide · 0d ago
-- [Machine Learning Engineer](https://jobs.smartrecruiters.com/servicenow/744000156637254) — **servicenow**  
-  Santa Clara, us · 1d ago
+- [In-Memory Database Platform Engineer](https://allstate.wd5.myworkdayjobs.com/en-US/allstate_careers/job/US---Remote/In-Memory-Database-Platform-Engineer_R35646) — **allstate**  
+  US - Remote · 0d ago
 
 ---
 
@@ -64,10 +50,30 @@
 - `workday/otis.wd5.myworkdayjobs.com|otis|rec_ext_gateway` — HTTP 422
 - `workday/lithia.wd5.myworkdayjobs.com|lithia|LithiaCareers` — HTTP 422
 - `workday/comcast.wd5.myworkdayjobs.com|comcast|Comcast_Careers` — HTTP 422
-- `workday/allstate.wd5.myworkdayjobs.com|allstate|allstate_careers` — The read operation timed out
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
+- `workday/tamus.wd1.myworkdayjobs.com|tamus|pvamu_external` — HTTP 429
+- `workday/priceline.wd1.myworkdayjobs.com|priceline|Priceline` — HTTP 429
+- `workday/waystar.wd1.myworkdayjobs.com|waystar|Waystar` — HTTP 429
+- `workday/cboe.wd1.myworkdayjobs.com|cboe|External_Career_CBOE` — HTTP 429
+- `workday/wmg.wd1.myworkdayjobs.com|wmg|WMGUS` — HTTP 429
+- `workday/isu.wd1.myworkdayjobs.com|isu|IowaStateJobs` — HTTP 429
+- `workday/swbc.wd1.myworkdayjobs.com|swbc|swbccareers` — HTTP 429
+- `workday/orthoclinical.wd1.myworkdayjobs.com|orthoclinical|Search` — HTTP 429
+- `workday/ucf.wd1.myworkdayjobs.com|ucf|careers` — HTTP 429
+- `workday/usbank.wd1.myworkdayjobs.com|usbank|Elavon_Careers` — HTTP 429
+- `workday/silabs.wd1.myworkdayjobs.com|silabs|SiliconlabsCareers` — HTTP 429
+- `workday/evolent.wd1.myworkdayjobs.com|evolent|External` — HTTP 429
+- `workday/peak6group.wd1.myworkdayjobs.com|peak6group|apexfintechsolutions` — HTTP 429
+- `workday/fanniemae.wd1.myworkdayjobs.com|fanniemae|FannieMaeCareers` — HTTP 429
+- `workday/wellsky.wd1.myworkdayjobs.com|wellsky|WellSkyCareers` — HTTP 429
+- `workday/wmeimg.wd1.myworkdayjobs.com|wmeimg|WME` — HTTP 429
+- `workday/evercommerce.wd1.myworkdayjobs.com|evercommerce|evercommerce_careers` — HTTP 429
+- `workday/pretiumenterpriseservices.wd1.myworkdayjobs.com|pretiumenterpriseservices|Selene` — HTTP 429
+- `workday/topcon.wd1.myworkdayjobs.com|topcon|TopconPositioningCareers` — HTTP 429
+- `workday/boeing.wd1.myworkdayjobs.com|boeing|INTERN` — HTTP 429
+- `workday/sentryinsurance.wd1.myworkdayjobs.com|sentryinsurance|SentryCareers` — HTTP 429
 - `workday/gapinc.wd1.myworkdayjobs.com|gapinc|gapconfidential` — token may be wrong
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
 - `workday/redbulltechnology.wd3.myworkdayjobs.com|redbulltechnology|RB_Racing` — HTTP 422
