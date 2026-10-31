@@ -1,18 +1,6 @@
 # New jobs · 2026-10-31
 
-3 total.
-
-## ⭐ Explicitly new grad / entry level (1)
-
-- [Software Engineer I, Promotions](https://jobs.ashbyhq.com/handshake/c2cea12b-4dba-4782-ac2d-279c6865a4b7) — **handshake**  
-  San Francisco, CA · 0d ago
-
-## Other engineering roles (2)
-
-- [Software Engineer, Jade - AI Financial Partner](https://boards.greenhouse.io/chime/jobs/8868948002?gh_jid=8868948002) — **chime**  
-  San Francisco, CA, USA · 0d ago
-- [Software Engineer, Membership Experience](https://boards.greenhouse.io/chime/jobs/8922481002?gh_jid=8922481002) — **chime**  
-  San Francisco, CA, USA · 0d ago
+Nothing new today.
 
 ---
 
@@ -56,9 +44,21 @@
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
+- `workday/finra.wd1.myworkdayjobs.com|finra|FINRA` — HTTP 429
+- `workday/sentryinsurance.wd1.myworkdayjobs.com|sentryinsurance|SentryCareers` — HTTP 429
 - `workday/ncino.wd5.myworkdayjobs.com|ncino|nCinoCareers` — HTTP 403
+- `workday/spectrumcontrol.wd1.myworkdayjobs.com|spectrumcontrol|spectrumcontrol` — HTTP 429
+- `workday/lthc.wd1.myworkdayjobs.com|lthc|ExcellusBCBSCareers` — HTTP 429
+- `workday/roberthalf.wd1.myworkdayjobs.com|roberthalf|roberthalfcareers` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|Univ_Careers` — HTTP 429
+- `workday/collin.wd1.myworkdayjobs.com|collin|ExternalStaffCareerSite` — HTTP 429
+- `workday/edftrading.wd1.myworkdayjobs.com|edftrading|EDFTrading` — HTTP 429
 - `workday/gapinc.wd1.myworkdayjobs.com|gapinc|gapconfidential` — token may be wrong
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
+- `workday/lplfinancial.wd1.myworkdayjobs.com|lplfinancial|university` — HTTP 429
+- `workday/massmutual.wd1.myworkdayjobs.com|massmutual|MMAscendCareers` — HTTP 429
+- `workday/gen.wd1.myworkdayjobs.com|gen|careers` — HTTP 429
+- `workday/cadence.wd1.myworkdayjobs.com|cadence|University_CST` — HTTP 429
 - `workday/gensler.wd1.myworkdayjobs.com|gensler|genslercareers` — HTTP 401
 - `workday/redbulltechnology.wd3.myworkdayjobs.com|redbulltechnology|RB_Racing` — HTTP 422
 - `workday/dell.wd1.myworkdayjobs.com|dell|External` — HTTP 422
