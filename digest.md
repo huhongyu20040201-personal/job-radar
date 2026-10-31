@@ -1,13 +1,18 @@
-# New jobs · 2026-10-30
+# New jobs · 2026-10-31
 
-2 total.
+3 total.
+
+## ⭐ Explicitly new grad / entry level (1)
+
+- [Software Engineer I, Promotions](https://jobs.ashbyhq.com/handshake/c2cea12b-4dba-4782-ac2d-279c6865a4b7) — **handshake**  
+  San Francisco, CA · 0d ago
 
 ## Other engineering roles (2)
 
-- [Test Infrastructure Engineer](https://jobs.lever.co/zoox/6320b978-abf4-483b-a09f-bfba0c44c485) — **zoox**  
-  Foster City, CA · 0d ago
-- [Infrastructure Engineer - Teradata](https://hcsc.wd1.myworkdayjobs.com/en-US/HCSC_External/job/National-Remote/Infrastructure-Engineer---Teradata_R0056199-1) — **hcsc**  
-  National Remote · 0d ago
+- [Software Engineer, Jade - AI Financial Partner](https://boards.greenhouse.io/chime/jobs/8868948002?gh_jid=8868948002) — **chime**  
+  San Francisco, CA, USA · 0d ago
+- [Software Engineer, Membership Experience](https://boards.greenhouse.io/chime/jobs/8922481002?gh_jid=8922481002) — **chime**  
+  San Francisco, CA, USA · 0d ago
 
 ---
 
