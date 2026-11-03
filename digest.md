@@ -1,12 +1,36 @@
 # New jobs · 2026-11-03
 
-Nothing new today.
+10 total.
+
+## Other engineering roles (10)
+
+- [EDA Cloud & Developer Infrastructure Engineer](https://jobs.ashbyhq.com/openai/4f2d9849-ad00-48d5-a22f-0cb943723999) — **openai**  
+  San Francisco · 0d ago
+- [Full Stack Web Developer](https://jobs.ashbyhq.com/terranova/ab65c694-e140-4efe-b7f7-abca43e48ba7) — **terranova**  
+  Berkeley · 0d ago
+- [Internal Tool Software Engineer](https://jobs.ashbyhq.com/terranova/b6ce03c4-07b6-45e1-94e9-24b3ec17d942) — **terranova**  
+  Berkeley · 0d ago
+- [Machine Learning Engineer](https://job-boards.greenhouse.io/gotion/jobs/8928924002) — **gotion**  
+  Fremont, California · 0d ago
+- [Software Engineer](https://job-boards.greenhouse.io/purestorage/jobs/8350702) — **purestorage**  
+  Santa Clara, California · 0d ago
+- [Software Engineer (Starlink Enterprise)](https://boards.greenhouse.io/spacex/jobs/8927257002?gh_jid=8927257002) — **spacex**  
+  Palo Alto, CA · 0d ago
+- [Software Engineer, Agent Auth](https://job-boards.greenhouse.io/vercel/jobs/6242246004) — **vercel**  
+  Hybrid - San Francisco · 0d ago
+- [Software Engineer, Connect ](https://job-boards.greenhouse.io/vercel/jobs/6242244004) — **vercel**  
+  Hybrid - San Francisco · 0d ago
+- [Software Engineer ](https://jobs.smartrecruiters.com/intuitive/744000159276636) — **intuitive**  
+  Sunnyvale, us · 0d ago
+- [Systems Engineer - Data & Automation](https://caci.wd1.myworkdayjobs.com/en-US/external/job/Remote-Any-State/Systems-Engineer---Data---Automation_334591) — **caci**  
+  Remote (Any State) · 0d ago
 
 ---
 
 **Fetch errors**
 
 - `ashby/amigo` — token may be wrong
+- `ashby/anything` — token may be wrong
 - `ashby/firetiger` — token may be wrong
 - `ashby/fundamentalresearchlabs` — token may be wrong
 - `ashby/goodship` — token may be wrong
@@ -51,5 +75,3 @@ Nothing new today.
 - `workday/gensler.wd1.myworkdayjobs.com|gensler|genslercareers` — HTTP 401
 - `workday/redbulltechnology.wd3.myworkdayjobs.com|redbulltechnology|RB_Racing` — HTTP 422
 - `workday/dell.wd1.myworkdayjobs.com|dell|External` — HTTP 422
-- `workday/draftkings.wd1.myworkdayjobs.com|draftkings|Campus_Career_Portal` — HTTP 429
-- `workday/costar.wd1.myworkdayjobs.com|costar|Costar_Campus` — HTTP 429
