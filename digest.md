@@ -1,4 +1,4 @@
-# New jobs · 2026-11-07
+# New jobs · 2026-11-08
 
 Nothing new today.
 
@@ -25,6 +25,8 @@ Nothing new today.
 - `greenhouse/buyersedgeplatformrecruiting` — token may be wrong
 - `greenhouse/debtbook` — token may be wrong
 - `greenhouse/deepmind` — token may be wrong
+- `greenhouse/focusfinancialpartners` — token may be wrong
+- `greenhouse/focuspartnerswealth` — token may be wrong
 - `greenhouse/iherb` — token may be wrong
 - `greenhouse/instabase` — token may be wrong
 - `greenhouse/liveviewtechnologiesinc` — token may be wrong
@@ -41,7 +43,7 @@ Nothing new today.
 - `lever/inductiveautomation` — token may be wrong
 - `lever/saronic` — token may be wrong
 - `lever/sensortower` — token may be wrong
-- `workday/aah.wd5.myworkdayjobs.com|aah|External` — Expecting value: line 1 column 1 (char 0)
+- `workday/aah.wd5.myworkdayjobs.com|aah|External` — HTTP 410
 - `workday/ssmh.wd5.myworkdayjobs.com|ssmh|ssmhealth` — HTTP 422
 - `workday/otis.wd5.myworkdayjobs.com|otis|rec_ext_gateway` — HTTP 422
 - `workday/lithia.wd5.myworkdayjobs.com|lithia|LithiaCareers` — HTTP 422
@@ -50,6 +52,7 @@ Nothing new today.
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
+- `workday/blackstone.wd1.myworkdayjobs.com|blackstone|bx_external_site` — HTTP 401
 - `workday/ncino.wd5.myworkdayjobs.com|ncino|nCinoCareers` — HTTP 403
 - `workday/gapinc.wd1.myworkdayjobs.com|gapinc|gapconfidential` — token may be wrong
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
