@@ -1,13 +1,21 @@
 # New jobs · 2026-11-10
 
-2 total.
+6 total.
 
-## Other engineering roles (2)
+## Other engineering roles (6)
 
-- [EverHealth - Software Engineer](https://evercommerce.wd1.myworkdayjobs.com/en-US/evercommerce_careers/job/Remote--US/EverHealth---Software-Engineer_R-106622) — **evercommerce**  
-  Remote- US · 0d ago
-- [Software Engineer](https://bcbst.wd1.myworkdayjobs.com/en-US/External/job/USA-TN-Chattanooga-Remote/Software-Engineer_R-51957) — **bcbst**  
-  USA, TN, Chattanooga, Remote · 0d ago
+- [Software Engineer](https://jobs.ashbyhq.com/Clera/2c6c8b86-2068-4ff1-95e0-3c0025cbb17b) — **clera**  
+  San Francisco · 0d ago
+- [Founding Software Engineer](https://jobs.ashbyhq.com/Clera/60a97037-c0af-46d2-a89d-5cf45e36d861) — **clera**  
+  San Francisco · 0d ago
+- [Fullstack Engineer](https://jobs.ashbyhq.com/Clera/87e4356d-ecc4-476c-894c-84a62c566ba5) — **clera**  
+  San Francisco · 0d ago
+- [Server Hardware Systems Engineer (Starlink)](https://boards.greenhouse.io/spacex/jobs/8934113002?gh_jid=8934113002) — **spacex**  
+  Palo Alto, CA · 0d ago
+- [Software Engineer (MANTL)](https://alkami.wd12.myworkdayjobs.com/en-US/alkami/job/US-Remote/Software-Engineer--MANTL-_JR-000891) — **alkami**  
+  US Remote · 0d ago
+- [Software Engineer - Embedded Systems](https://jobs.lever.co/lightship/9e214ac0-39c1-4a28-8674-59507c5fef67) — **lightship**  
+  South San Francisco, CA · 5d ago
 
 ---
 
@@ -25,6 +33,7 @@
 - `ashby/tempo` — token may be wrong
 - `ashby/tracer` — token may be wrong
 - `ashby/two-dots` — token may be wrong
+- `greenhouse/alphaawmnaearlycareers` — token may be wrong
 - `greenhouse/amplitude` — token may be wrong
 - `greenhouse/artefactus` — token may be wrong
 - `greenhouse/atlassand` — token may be wrong
@@ -57,6 +66,7 @@
 - `workday/cmu.wd5.myworkdayjobs.com|cmu|cmu` — HTTP 422
 - `workday/idexx.wd1.myworkdayjobs.com|idexx|IDEXX` — HTTP 422
 - `workday/boarshead.wd1.myworkdayjobs.com|boarshead|BHC` — HTTP 403
+- `workday/jpi.wd1.myworkdayjobs.com|jpi|jpicareers` — The read operation timed out
 - `workday/ncino.wd5.myworkdayjobs.com|ncino|nCinoCareers` — HTTP 403
 - `workday/gapinc.wd1.myworkdayjobs.com|gapinc|gapconfidential` — token may be wrong
 - `workday/nio.wd3.myworkdayjobs.com|nio|NIO_Careers` — HTTP 422
