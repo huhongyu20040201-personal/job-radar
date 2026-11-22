@@ -1,4 +1,4 @@
-# New jobs · 2026-11-21
+# New jobs · 2026-11-22
 
 Nothing new today.
 
@@ -6,6 +6,7 @@ Nothing new today.
 
 **Fetch errors**
 
+- `ashby/aditude` — token may be wrong
 - `ashby/amigo` — token may be wrong
 - `ashby/anything` — token may be wrong
 - `ashby/firetiger` — token may be wrong
@@ -37,6 +38,7 @@ Nothing new today.
 - `greenhouse/mqreferrals` — token may be wrong
 - `greenhouse/rdccareers` — token may be wrong
 - `greenhouse/scoutai` — token may be wrong
+- `greenhouse/shein` — token may be wrong
 - `greenhouse/temporaltechnologies` — token may be wrong
 - `greenhouse/threatlocker` — token may be wrong
 - `greenhouse/underdogfantasy` — token may be wrong
@@ -47,7 +49,7 @@ Nothing new today.
 - `lever/saronic` — token may be wrong
 - `lever/sensortower` — token may be wrong
 - `lever/trio` — token may be wrong
-- `workday/aah.wd5.myworkdayjobs.com|aah|External` — HTTP 410
+- `workday/aah.wd5.myworkdayjobs.com|aah|External` — HTTP 422
 - `workday/ssmh.wd5.myworkdayjobs.com|ssmh|ssmhealth` — HTTP 422
 - `workday/otis.wd5.myworkdayjobs.com|otis|rec_ext_gateway` — HTTP 422
 - `workday/lithia.wd5.myworkdayjobs.com|lithia|LithiaCareers` — HTTP 422
